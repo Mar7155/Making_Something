@@ -1,0 +1,19 @@
+---
+interface Props {
+    href: string;
+    text: string;
+    color: string;
+}
+
+const { href, text, color} = Astro.props as Props;
+---
+
+<a href={href} class="relative px-6 py-2 text-3xl text-black font-bold border-black rounded-lg hover:border-1 transition md:text-lg" style={`--shadow-color: rgba(${color})`}>
+    {text}
+  </a>
+  
+  <style>
+    a:hover {
+      box-shadow: 8px 8px 0px 0px var(--shadow-color);
+    }
+  </style>
