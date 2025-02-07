@@ -1,10 +1,1 @@
 @import "tailwindcss";
-
-:root{
-    --primary-color: #f4f4f4;
-    --shadow-color: #ffe15e;
-}
-
-.shadow{
-    background-color: var(--shadow-color);
-}

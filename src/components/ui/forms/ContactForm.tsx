@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SecondaryButton from "../SecondaryButton";
+import SecondaryButton from "../buttons/SecondaryButton";
 
 function ContactForm() {
   const [nombre, setNombre] = useState("");
@@ -10,6 +10,8 @@ function ContactForm() {
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+    console.log("oal");
+    
     if (nombre && email && mensaje) {
       setExito(true);
       setError(false);
@@ -21,10 +23,10 @@ function ContactForm() {
   };
 
   return (
-    <div className="flex justify-center items-center px-10 py-14 w-2/4">
+    <div className="flex justify-center items-center px-10 py-14 w-full md:w-2/3">
       <form
         onSubmit={handleSubmit}
-        className="p-6 rounded-lg shadow-lg w-full"
+        className="py-6 px-32 rounded-lg shadow-lg w-full"
       >
         <h2 className="text-6xl font-bold mb-4 text-center">Contacto</h2>
 
@@ -49,13 +51,13 @@ function ContactForm() {
             id="nombre"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
-            className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 mt-1 border-1 border-cyan-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 transition duration-300"
             placeholder="Tu nombre"
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 transition duration-300">
             Correo Electrónico
           </label>
           <input
@@ -63,20 +65,20 @@ function ContactForm() {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 transition duration-300"
             placeholder="Tu correo"
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="mensaje" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="mensaje" className="block text-sm font-medium text-gray-700 transition duration-300">
             Mensaje
           </label>
           <textarea
             id="mensaje"
             value={mensaje}
             onChange={(e) => setMensaje(e.target.value)}
-            className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400 transition duration-300"
             placeholder="Escribe tu mensaje"
             rows={4}
           />
@@ -84,9 +86,9 @@ function ContactForm() {
 
         <button
           type="submit"
-          className="w-full py-2 px-4 hover:cursor-pointer"
-        >
-          <SecondaryButton text="Enviar" color="bg-blue-200" ></SecondaryButton>
+          className="w-full py-2 px-4"
+>
+          <SecondaryButton text="Enviar" color="bg-sky-400" ></SecondaryButton>
         </button>
       </form>
     </div>

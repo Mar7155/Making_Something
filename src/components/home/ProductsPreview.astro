@@ -1,15 +1,10 @@
 ---
-import SecondaryButton from "../ui/SecondaryButton.astro";
+import SecondaryButton from "../ui/buttons/SecondaryButton.astro";
 import Slider from "../ui/Slider";
 ---
 
-<section
-    id="products"
-    class="py-20 md:py-40 px-4 md:px-5 flex justify-center items-center flex-col md:flex-row gap-10 md:gap-0"
->
-    <div
-        class="flex flex-col gap-6 justify-start items-start md:w-5/6 lg:w-2/3"
-    >
+<section id="products" class="py-20 md:py-40 px-4 md:px-5 flex justify-center items-center flex-col md:flex-row gap-10 md:gap-0">
+    <div class="flex flex-col gap-6 justify-start items-start md:w-5/6 lg:w-2/3">
         <h1 class="font-medium text-gray-500">
             Explora nuestra selección de productos más vendidos
         </h1>
@@ -23,9 +18,7 @@ import Slider from "../ui/Slider";
         </p>
         <SecondaryButton href="/" text="Ver más" color="bg-green-400" />
     </div>
-    <div
-        class="md:w-1/2 w-full h-full object-contain hidden md:flex items-center justify-center py-10 px-20"
-    >
+    <div class="md:w-1/2 w-full h-full object-contain hidden md:flex items-center justify-center py-10 px-20">
         <Slider client:idle />
     </div>
 </section>

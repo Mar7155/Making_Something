@@ -1,11 +1,9 @@
 ---
 import ContactForm from "../ui/forms/ContactForm";
-import PrimaryButton from "../ui/PrimaryButton.astro";
-import SecondaryButton from "../ui/SecondaryButton.astro";
 ---
 
 <section id="contact" class="py-20 md:py-40 px-4 flex justify-center items-center flex-col md:flex-row gap-10 md:gap-0">
     <div class="flex flex-col gap-6 justify-center items-center md:w-5/6">
-        <ContactForm />
+        <ContactForm client:idle/>
     </div>
 </section>
