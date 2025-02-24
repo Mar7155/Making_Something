@@ -4,16 +4,22 @@ interface Card {
     img?: string;
 }
 
-const Card: React.FC<Card> = ({title, description}) => {
+const Card: React.FC<Card> = ({ title, description }) => {
     return (
-        <div className="flex flex-col border justify-center items-center  ">
+        <div className="flex flex-col justify-center items-center  ">
             <a href="">
-                <div className="bg-sky-300 border-3 border-black rounded-2xl h-52 w-60 flex transition relative">
-                <div className="absolute -top-8 -left-12 text-5xl bg-ppink px-5 py-1 z-10 shadow-card group-hover:shadow-hover transition rounded-t-2xl border-3 border-black rounded-bl-2xl rounded-br-sm"> <svg width="1em" height="1em" data-icon="paint">   <symbol id="ai:local:paint" viewBox="0 0 256 256"><path fill="currentColor" d="M224 28c-20.29 0-43.16 11.24-68 33.4-18.47 16.49-34.39 35.83-45 49.93A56 56 0 0 0 36 164c0 33.22-21.26 48-22.22 48.68A4 4 0 0 0 16 220h76a56 56 0 0 0 52.67-75c14.11-10.63 33.44-26.55 49.93-45C216.76 75.16 228 52.29 228 32a4 4 0 0 0-4-4M92 212H26.35C33.91 203.69 44 188.08 44 164a48 48 0 1 1 48 48m26.52-97.31c4.13-5.44 9.32-12 15.29-18.9a80.1 80.1 0 0 1 26.4 26.4c-6.94 6-13.46 11.16-18.9 15.29a56.3 56.3 0 0 0-22.79-22.79m47.77 2.14a88.2 88.2 0 0 0-27.12-27.12c21.83-24.28 52.09-51.08 80.65-53.53-2.45 28.56-29.25 58.82-53.53 80.65"></path></symbol><use href="#ai:local:paint"></use>  </svg> </div>
-                    <div className="h-80 w-60 overflow-hidden relative rounded-2xl">
-                        <img src="/mercedez.jpg" alt="producto1" width="315" height="377" loading="lazy" decoding="async" className="object-bottom absolute group-hover:scale-105 transition" />
+                <div className="relative bg-blue-300 border-3 rounded-2xl h-52 w-60 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow">
+                    <div className="absolute -top-8 -left-12 text-5xl bg-pink-300 px-5 py-1 shadow-card group-hover:shadow-hover shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow rounded-t-2xl border-3 border-black rounded-bl-2xl rounded-br-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m21.41 11.41l-8.83-8.83c-.37-.37-.88-.58-1.41-.58H4c-1.1 0-2 .9-2 2v7.17c0 .53.21 1.04.59 1.41l8.83 8.83c.78.78 2.05.78 2.83 0l7.17-7.17c.78-.78.78-2.04-.01-2.83M12.83 20L4 11.17V4h7.17L20 12.83z"/><circle cx="6.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
                     </div>
+                    <div className="absolute w-full top-20 left-0 rounded-2xl hover:scale-105 transition">
+                        <img src="/audi.png" alt="producto1" width="315" height="377" loading="lazy" decoding="async" className="object-bottom absolute group-hover:scale-105 transition" />
+                    </div>
+                    <a className="absolute -bottom-14 right-0 px-5 py-1 bg-amber-200 border-3 rounded-4xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow">
+                        {title}
+                    </a>
                 </div>
+
             </a>
         </div>
     )

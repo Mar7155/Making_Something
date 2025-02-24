@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+.mySwiper{
+    z-index: 1;
+}
+
+.bg-primary{
+    background-color: #f4f4f4;
+}

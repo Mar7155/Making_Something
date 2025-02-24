@@ -10,12 +10,12 @@ import "../styles/global.css";
 		<meta name="generator" content={Astro.generator} />
 		<title>Making Something</title>
 	</head>
-	<body class="">
+	<body class="bg-primary">
 		<slot />
 	</body>
 </html>
 
-<style>
+<style is:global>
 	*{
 		scroll-behavior: smooth;
 	}
@@ -24,6 +24,5 @@ import "../styles/global.css";
 		margin: 0;
 		width: 100%;
 		height: 100%;
-		background-color: var(--primary-color);
 	}
 </style>

@@ -3,7 +3,7 @@ import Button from "./ui/buttons/PrimaryButton.astro";
 ---
 
 <header class="fixed w-full ">
-    <nav class="flex container mx-auto md:p-10 px-4 py-6 items-center justify-between md:backdrop-blur-xs">
+    <nav class="flex container mx-auto md:p-10 px-4 py-6 items-center justify-between md:backdrop-blur-sm">
         <a href="/" class="flex items-center gap-2">
             <img src="/logo.svg" alt="logo" class="w-10 h-10" />
             <span class="text-lg font-bold">Making Something</span>
@@ -36,8 +36,8 @@ import Button from "./ui/buttons/PrimaryButton.astro";
                     ></path>
                 </svg>
             </button>
-            <div id="nav" class="fixed top-0 left-0 w-full h-full bg-white z-40 transform -translate-y-full transition-transform duration-300 ease-in-out"> 
-                <ul class="flex flex-col w-full h-full justify-evenly items-center py-20 gap-8 md:gap-8 text-nowrap md:flex">
+            <div id="nav" class="fixed top-0 left-0 w-full h-full bg-primary transform -translate-y-full transition-transform duration-300 ease-in-out"> 
+                <ul class="flex flex-col w-full h-full justify-evenly items-center py-20 gap-8 md:gap-8 text-nowrap md:flex z-50">
                     <li>
                         <button type="button" onclick="navClick()">
                             <Button href="#home" text="Home" color="200,0,255,0.5"></Button>
