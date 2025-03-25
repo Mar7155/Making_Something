@@ -26,9 +26,9 @@ function ContactForm() {
     <div className="flex justify-center items-center px-10 py-14 w-full md:w-2/3">
       <form
         onSubmit={handleSubmit}
-        className="py-6 px-32 rounded-lg shadow-lg w-full"
+        className="p-12 md:px-32 rounded-lg shadow-lg w-full"
       >
-        <h2 className="text-6xl font-bold mb-4 text-center">Contacto</h2>
+        <h2 className="text-5xl font-bold mb-4 text-center">Contacto</h2>
 
         {exito && (
           <div className="bg-green-200 text-green-700 p-2 mb-4 rounded">
