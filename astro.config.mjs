@@ -7,8 +7,6 @@ import tailwindcss from '@tailwindcss/vite';
 
 import vercel from '@astrojs/vercel';
 
-import path from 'path';
-
 // https://astro.build/config
 export default defineConfig({
   integrations: [react({
@@ -23,8 +21,7 @@ export default defineConfig({
     },
     resolve: {
       alias: {
-        "@": path.resolve(__dirname, "./src"),
-        "@tests": path.resolve(__dirname, "./tests")
+        "@": "./src",
       }
     }
   },
