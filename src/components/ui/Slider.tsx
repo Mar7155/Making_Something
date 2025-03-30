@@ -1,17 +1,11 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'Swiper/css';
 import Card from "./preview-card";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 export default function Slider() {
     return (
         <>
-            <Swiper className="mySwiper z-10"
-                modules={[Navigation, Pagination, Autoplay]}
-                loop={true}
-                //autoplay={{ delay:5000 }}
-                tabIndex={10}
-            >
+            <Swiper className="mySwiper z-10">
                 <SwiperSlide className="py-18">
                     <Card 
                         title={"producto 1"} 
