@@ -1,6 +1,6 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import "/node_modules/swiper/swiper-bundle.css";
-import Card from "./preview-card";
+import Card from "./preview-card.tsx";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 export default function Slider() {

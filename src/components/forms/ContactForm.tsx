@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SecondaryButton from "../ui/buttons/SecondaryButton";
+import SecondaryButton from "@/components/ui/buttons/SecondaryButton.tsx";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form } from "../ui/form.tsx"
 import { useForm } from "react-hook-form"
