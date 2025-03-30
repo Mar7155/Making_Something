@@ -15,7 +15,7 @@ export default defineConfig({
 
   vite: {
     // @ts-ignore
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), react()],
     optimizeDeps: {
       include: ["swiper"],
     },
