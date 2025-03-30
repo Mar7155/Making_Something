@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { Check, Loader, Loader2, LogOut, Pencil, X } from "lucide-react"
-import { Switch } from "@/components/ui/switch"
 import Avvvatars from 'avvvatars-react'
 import { BASE_URL } from "@/lib/utils"
 import type { User } from "@/lib/types/user"
