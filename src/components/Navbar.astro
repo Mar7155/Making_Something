@@ -1,24 +1,39 @@
 ---
+import { ModeToggle } from "./ui/buttons/ModeToggle";
 import Button from "./ui/buttons/PrimaryButton.astro";
+import SecondaryButton from "./ui/buttons/SecondaryButton.astro";
 ---
 
 <header class="fixed w-full z-50">
-    <nav class="flex container mx-auto md:p-10 px-4 py-6 items-center justify-between md:backdrop-blur-sm">
-        <a href="/" class="flex items-center gap-2">
-            <img src="/logo.svg" alt="logo" class="w-10 h-10" />
-            <span class="text-lg font-bold">Making Something</span>
-        </a>
-        <ul class="items-center md:gap-8 text-nowrap hidden md:flex">
-            <li>
-                <Button href="#home" text="Home" color="200,0,255,0.5"></Button>
-            </li>
-            <li>
-                <Button href="#products" text="Products" color="0,165,255,0.8"></Button>
-            </li>
-            <li>
-                <Button href="#contact" text="Contact" color="255,160,0,0.8"></Button>
-            </li>
-        </ul>
+    <nav class="flex container mx-auto py-6 px-4 items-center justify-between bg-primary">
+        <div>
+            <a href="/" class="flex items-center gap-2">
+                <img src="/logo.svg" alt="logo" class="w-10 h-10" />
+                <span class="text-lg font-bold">Making Something</span>
+            </a>
+        </div>
+        <div class="pl-12">
+            <ul class="items-center md:gap-8 text-nowrap hidden md:flex">
+                <li>
+                    <Button href="#home" text="Home" color="200,0,255,0.8"></Button>
+                </li>
+                <li>
+                    <Button href="#products" text="Productos" color="0,165,255,0.8"></Button>
+                </li>
+                <li>
+                    <Button href="#service" text="Servicios" color="255,0,150,0.8"></Button>
+                </li>
+                <li>
+                    <Button href="#contact" text="Contacto" color="255,160,0,0.8"></Button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="hidden gap-4 items-center md:flex bg-">
+            <SecondaryButton href="/Sign" text="Registrarse" color="bg-amber-400" />
+            <SecondaryButton href="/Login" text="Iniciar sesion" color="bg-white-400" />
+        </div>
+            
         <div class="md:hidden">
             <button type="button" onclick="handleClick()" class="hamburger" aria-label="menu">
                 <svg

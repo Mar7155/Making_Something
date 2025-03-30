@@ -1,29 +1,92 @@
-interface Card {
-    title: string;
-    description: string;
-    img?: string;
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+function Card({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card"
+      className={cn(
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        className
+      )}
+      {...props}
+    />
+  )
 }
 
-const Card: React.FC<Card> = ({ title, description }) => {
-    return (
-        <div className="flex flex-col justify-center items-center">
-            <a href="/">
-                <div className="relative bg-blue-300 border-3 rounded-2xl h-52 w-60 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow">
-                    <div className="absolute -top-8 -left-12 text-5xl bg-pink-300 px-5 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow rounded-t-2xl border-3 border-black rounded-bl-2xl rounded-br-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m21.41 11.41l-8.83-8.83c-.37-.37-.88-.58-1.41-.58H4c-1.1 0-2 .9-2 2v7.17c0 .53.21 1.04.59 1.41l8.83 8.83c.78.78 2.05.78 2.83 0l7.17-7.17c.78-.78.78-2.04-.01-2.83M12.83 20L4 11.17V4h7.17L20 12.83z"/><circle cx="6.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
-                    </div>
-                    <div className="absolute w-full top-20 left-0 rounded-2xl hover:scale-105 transition">
-                        <img src="/audi.png" alt="producto1" width="315" height="377" loading="lazy" decoding="async" className="object-bottom absolute group-hover:scale-105 transition" />
-                    </div>
-                    <a className="absolute -bottom-14 right-0 px-5 py-1 bg-amber-200 border-black border-3 rounded-4xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow">
-                        {title}
-                    </a>
-                </div>
-
-            </a>
-        </div>
-    )
-
+function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-header"
+      className={cn(
+        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+        className
+      )}
+      {...props}
+    />
+  )
 }
 
-export default Card
+function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-title"
+      className={cn("leading-none font-semibold", className)}
+      {...props}
+    />
+  )
+}
+
+function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-description"
+      className={cn("text-muted-foreground text-sm", className)}
+      {...props}
+    />
+  )
+}
+
+function CardAction({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-action"
+      className={cn(
+        "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function CardContent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-content"
+      className={cn("px-6", className)}
+      {...props}
+    />
+  )
+}
+
+function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-footer"
+      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+      {...props}
+    />
+  )
+}
+
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardAction,
+  CardDescription,
+  CardContent,
+}

@@ -1,0 +1,12 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Register from "@/components/forms/registration-form"
+---
+
+<Layout>
+    <section class="container m-auto flex justify-center items-center">  
+        <div class="w-full md:w-1/2 py-20">
+            <Register client:load></Register>
+        </div>   
+    </section>
+</Layout>

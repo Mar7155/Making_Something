@@ -1,24 +1,60 @@
 ---
-import Navbar from '@/components/Navbar.astro';
-import Layout from '../layouts/Layout.astro';
-import Home from '@/components/home/Home.astro';
-import ProductsPreview from '@/components/home/ProductsPreview.astro';
-import Contact from '@/components/home/Contact.astro';
+import Navbar from "@/components/Navbar.astro";
+import Layout from "../layouts/Layout.astro";
+import SecondaryButton from "@/components/ui/buttons/SecondaryButton.astro";
+import Slider from "@/components/ui/Slider";
+import ContactForm from "@/components/forms/ContactForm";
 ---
 
 <Layout>
-    <Navbar/>
+    <Navbar />
     <main class="container h-full mx-auto">
-        <!-- <div class="fixed">
-            <script is:inline src="https://static.elfsight.com/platform/platform.js" async></script>
-            <div class="elfsight-app-9d2a991c-b6e0-4162-a3a4-cef42e394a6b" data-elfsight-app-lazy></div>
-        </div>-->
-        <Home />
-        <ProductsPreview />
-        <Contact />
-        <div>
-            <script is:inline src="https://static.elfsight.com/platform/platform.js" async></script>
-            <div class="elfsight-app-10a627ab-3b90-4b52-815a-3d72bfb3c49c" data-elfsight-app-lazy></div>
-        </div>
+        <section id="home" class="h-full flex justify-center items-center flex-col md:flex-row px-4 md:px-0 gap-10 md:gap-0">
+            <div class="flex flex-col gap-6 justify-start items-start md:w-5/6 lg:w-2/3">
+                <p class="font-medium text-gray-500">
+                    Hola, bienvenido a <span class="font-bold">Making Something</span> ^^
+                </p>
+                <h1 class="font-extrabold text-7xl">
+                    If you can imagine you can make it! 😼
+                </h1>
+                <p class="font-medium text-gray-600">
+                    Explora nuestra selección de productos más vendidos,
+                    sumérgete en nuestro blog y acompáñanos en cada paso de
+                    nuestro camino.
+                </p>
+                <SecondaryButton
+                    href="/"
+                    text="Ver productos"
+                    color="bg-amber-400"
+                />
+            </div>
+            <!-- <div class="md:w-1/2 object-contain flex items-center justify-center p-10 group"></div>-->
+        </section>
+
+        <section id="products" class="py-20 h-full px-4 md:px-40 flex justify-center items-center flex-col md:flex-row gap-10 md:gap-0">
+            <div class="flex flex-col gap-6 justify-start items-start md:w-5/6 lg:w-2/3">
+                <h1 class="font-medium text-gray-500">
+                    Explora nuestra selección de productos más vendidos
+                </h1>
+                <p class="font-extrabold text-5xl">
+                    ¡Sumérgete en nuestro catálogo! 🛍️
+                </p>
+                <p class="font-medium text-gray-600">
+                    Descubre los productos más vendidos de la temporada,
+                    encuentra el regalo perfecto para esa persona especial o
+                    simplemente date un gusto a ti mismo.
+                </p>
+                <SecondaryButton href="/" text="Ver más" color="bg-green-400" />
+            </div>
+            <div class="md:w-1/2 w-full object-contain md:flex py-10">
+                <Slider client:load />
+            </div>
+        </section>
+
+        <section id="contact" class="py-40 px-4 flex justify-center items-center flex-col md:flex-row gap-10 md:gap-0">
+            <div class="flex flex-col gap-6 justify-center items-center md:w-5/6">
+                <ContactForm client:load/>
+            </div>
+        </section>
     </main>
 </Layout>

@@ -1,0 +1,13 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Log from "@/components/forms/Login"
+
+---
+
+<Layout>
+    <section class="container mx-auto flex justify-center items-center">  
+        <div class="w-full md:w-1/2 ">
+            <Log client:load ></Log>
+        </div>   
+    </section>
+</Layout>
