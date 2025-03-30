@@ -15,6 +15,12 @@ export default defineConfig({
 
   vite: {
     // @ts-ignore
+    resolve: {
+      alias: {
+        // @ts-ignore
+        "@": path.resolve("./src"), // Ensure this is correct
+      },
+    },
     plugins: [tailwindcss(), react()],
     optimizeDeps: {
       include: ["swiper"],
