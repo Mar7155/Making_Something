@@ -14,6 +14,11 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        external: ["swiper", "swiper/react", "swiper/css", "@/components/ui/card.tsx"], // Add the module(s) you want to externalize
+      },
+    },
   },
 
   env:{
