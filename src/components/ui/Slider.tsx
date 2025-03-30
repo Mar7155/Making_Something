@@ -1,5 +1,5 @@
 import {Swiper, SwiperSlide} from "swiper/react";
-import 'Swiper/swiper-bundle.css';
+import "/node_modules/swiper/swiper-bundle.css";
 import Card from "./preview-card";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
