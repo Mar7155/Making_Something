@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import SecondaryButton from "../ui/buttons/SecondaryButton";
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Form } from "../ui/form"
+import { Form } from "../ui/form.tsx"
 import { useForm } from "react-hook-form"
 import { z } from "zod";
-import { Button } from "../ui/button";
-import { FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from "../ui/form";
-import { Input } from "../ui/input";
+import { FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from "../ui/form.tsx";
+import { Input } from "../ui/input.tsx";
 
 const formSchema = z.object({
   name: z.string().min(4, "El nombre debe tener almenos 3 caracteres"),

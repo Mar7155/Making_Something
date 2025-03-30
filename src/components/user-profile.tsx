@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card.tsx"
+import { Input } from "@/components/ui/input.tsx"
+import { Label } from "@/components/ui/label.tsx"
+import { Separator } from "@/components/ui/separator.tsx"
+import { Button } from "@/components/ui/button.tsx"
 import { Check, Loader, Loader2, LogOut, Pencil, X } from "lucide-react"
 import Avvvatars from 'avvvatars-react'
-import { BASE_URL } from "@/lib/utils"
-import type { User } from "@/lib/types/user"
+import { BASE_URL } from "@/lib/utils.ts"
+import type { User } from "@/lib/types/user.ts"
 
 // Default user with the new structure
 const userInfo: User = {
