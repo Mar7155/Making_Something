@@ -1,5 +1,5 @@
 import {Swiper, SwiperSlide} from "swiper/react";
-import 'Swiper/css';
+import 'Swiper';
 import Card from "./preview-card";
 
 export default function Slider() {
