@@ -11,9 +11,8 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
-
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), react()],
     build: {
       rollupOptions: {
         external: ["swiper", "swiper/react", "swiper/css", "@/components/ui/card.tsx"], // Add the module(s) you want to externalize
@@ -28,5 +27,6 @@ export default defineConfig({
   },
 
   output: 'server',
-  adapter: netlify()
+  adapter: netlify(),
+  integrations: [react()]
 });
