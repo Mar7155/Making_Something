@@ -9,10 +9,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox.tsx"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form.tsx"
 import { registrationSchema, type RegistrationFormValues } from "@/lib/schemas/registration-schema.ts"
-import { BASE_URL } from "@/lib/utils.ts"
+import { API_URL } from "@/lib/utils.ts"
 
 export default function RegistrationForm() {
   const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const form = useForm<RegistrationFormValues>({
     resolver: zodResolver(registrationSchema),
@@ -73,11 +74,10 @@ export default function RegistrationForm() {
   ]
 
   const onSubmit = async (data: RegistrationFormValues) => {
-    console.log("Datos validados:", data)
 
     if (data.insertAddress) {
       try {
-        const response = await fetch(`${BASE_URL}/createUserWithAddress`, {
+        const response = await fetch(`${API_URL}/createUserWithAddress`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -90,8 +90,7 @@ export default function RegistrationForm() {
           console.log("Error en la respuesta del servidor: " + resData.message);
           return
         }
-  
-        console.log("Registro exitoso")
+
         form.reset()
       } catch (error) {
         console.error("Error al registrarse: ", error)
@@ -100,7 +99,7 @@ export default function RegistrationForm() {
     
     if (!data.insertAddress) {
       try {
-        const response = await fetch(`${BASE_URL}/createUser`, {
+        const response = await fetch(`http://localhost:3435/createUser`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -155,10 +154,10 @@ export default function RegistrationForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          name <span className="text-red-500">*</span>
+                          Nombre <span className="text-red-500">*</span>
                         </FormLabel>
                         <FormControl>
-                          <Input placeholder="Ingresa tu name" {...field} />
+                          <Input placeholder="Ingresa tu nombre" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -170,10 +169,10 @@ export default function RegistrationForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          lastname <span className="text-red-500">*</span>
+                          Apellidos <span className="text-red-500">*</span>
                         </FormLabel>
                         <FormControl>
-                          <Input placeholder="Ingresa tus lastname" {...field} />
+                          <Input placeholder="Ingresa tus apellidos" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -186,7 +185,7 @@ export default function RegistrationForm() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        email Electrónico <span className="text-red-500">*</span>
+                        Correo electrónico <span className="text-red-500">*</span>
                       </FormLabel>
                       <FormControl>
                         <Input type="email" placeholder="ejemplo@email.com" {...field} />
@@ -222,7 +221,7 @@ export default function RegistrationForm() {
                         <div className="relative">
                           <Input
                             type={showPassword ? "text" : "password"}
-                            placeholder="Ingresa tu contraseña"
+                            placeholder="Crea una contraseña"
                             {...field} />
                           <Button
                             type="button"
@@ -272,7 +271,7 @@ export default function RegistrationForm() {
                           <FormItem>
                             <FormLabel>Calle</FormLabel>
                             <FormControl>
-                              <Input placeholder="name de la calle" {...field} />
+                              <Input placeholder="Nombre de la calle" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -319,7 +318,7 @@ export default function RegistrationForm() {
                           <FormItem>
                             <FormLabel>Colonia</FormLabel>
                             <FormControl>
-                              <Input placeholder="name de la colonia" {...field} />
+                              <Input placeholder="Nombre de la colonia" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -349,7 +348,7 @@ export default function RegistrationForm() {
                           <FormItem>
                             <FormLabel>Ciudad</FormLabel>
                             <FormControl>
-                              <Input placeholder="name de la ciudad" {...field} />
+                              <Input placeholder="Nombre de la ciudad" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>

@@ -1,0 +1,24 @@
+---
+// Props for the card component
+interface Props {
+    name: string;
+    description: string;
+    color: string;
+}
+
+const { name, description, color } = Astro.props as Props;
+---
+
+<div class="bg-white border-1 border-gray-300 rounded-lg p-4 max-w-sm transition duration-200" style={`--shadow-color: rgba(${color})`}>
+    <h2 class="m-0 text-xl font-bold text-black">{name}</h2>
+    <p class="mt-2 text-base text-gray-700">{description}</p>
+</div>
+
+<style>
+    div {
+        box-shadow: 4px 4px 0px 0px var(--shadow-color);
+    }
+    div:hover {
+      box-shadow: 8px 8px 0px 0px var(--shadow-color);
+    }
+  </style>

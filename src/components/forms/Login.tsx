@@ -5,11 +5,16 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "
 import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { loginSchema } from "@/lib/schemas/login-schema";
+import { useState } from "react";
 
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const Login: React.FC<any> = () => {
+
+    const [error, setError] = useState<string | null>(null);
+    const [isError, setIsError] = useState(false);
+    
     const form = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -21,7 +26,7 @@ const Login: React.FC<any> = () => {
     const onSubmit = async (values: LoginFormValues) => {
 
         try {
-            const response = await fetch(`${API_URL}/login`, {
+            const response = await fetch(`http://localhost:3435/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -29,11 +34,12 @@ const Login: React.FC<any> = () => {
                 body: JSON.stringify(values),
             })
 
-            if (!response.ok) {
-                console.error("Login failed:", response.statusText);
-            }
-
             const data = await response.json();
+            if (!response.ok) {
+                setIsError(true);
+                setError(data.message);
+                return;
+            }
             localStorage.setItem("user", JSON.stringify(data.user));
 
         } catch (error) {
@@ -79,6 +85,12 @@ const Login: React.FC<any> = () => {
                                 </FormItem>
                             )}
                         />
+                        {isError ? (
+                            <div className="flex justify-center py-2 rounded-md text-red-500 bg-red-200">{error}</div>
+                        ):(
+                            <div className="flex justify-center py-2"></div>
+                        )}
+
                         <Button type="submit" className="w-full mt-4 bg-red-500 hover:cursor-pointer hover:bg-red-600 transition duration-300" disabled={form.formState.isSubmitting}>
                             {form.formState.isSubmitting ? "Enviando..." : "Iniciar Sesión"}
                         </Button>

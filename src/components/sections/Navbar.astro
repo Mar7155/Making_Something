@@ -1,7 +1,7 @@
 ---
-import { ModeToggle } from "./ui/buttons/ModeToggle";
-import Button from "./ui/buttons/PrimaryButton.astro";
-import SecondaryButton from "./ui/buttons/SecondaryButton.astro";
+import { ModeToggle } from "../ui/buttons/ModeToggle";
+import Button from "../ui/buttons/PrimaryButton.astro";
+import SecondaryButton from "../ui/buttons/SecondaryButton.astro";
 ---
 
 <header class="fixed w-full z-50">
@@ -21,7 +21,7 @@ import SecondaryButton from "./ui/buttons/SecondaryButton.astro";
                     <Button href="#products" text="Productos" color="0,165,255,0.8"></Button>
                 </li>
                 <li>
-                    <Button href="#service" text="Servicios" color="255,0,150,0.8"></Button>
+                    <Button href="#services" text="Servicios" color="40,200,0,0.8"></Button>
                 </li>
                 <li>
                     <Button href="#contact" text="Contacto" color="255,160,0,0.8"></Button>
@@ -60,12 +60,17 @@ import SecondaryButton from "./ui/buttons/SecondaryButton.astro";
                     </li>
                     <li>
                         <button type="button" onclick="navClick()">    
-                            <Button href="#products" text="Products" color="0,165,255,0.8"></Button>
+                            <Button href="#products" text="Productos" color="0,165,255,0.8"></Button>
                         </button>
                     </li>
                     <li>
                         <button type="button" onclick="navClick()">
-                            <Button href="#contact" text="Contact" color="255,160,0,0.8"></Button>
+                            <Button href="#services" text="Servicios" color="40,200,0,0.8"></Button>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" onclick="navClick()">
+                            <Button href="#contact" text="Contacto" color="255,160,0,0.8"></Button>
                         </button>
                     </li>
                 </ul>
@@ -88,9 +93,9 @@ import SecondaryButton from "./ui/buttons/SecondaryButton.astro";
         if (nav) {
             setTimeout(() => {    
                 nav.classList.add('transform');
-                nav.classList.add('duration-600')
+                nav.classList.add('duration-800')
                 nav.classList.add('-translate-y-full');
-            }, 300);
+            }, 500);
         }
     }
 </script>

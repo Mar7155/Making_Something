@@ -15,6 +15,7 @@ const userInfo: User = {
   lastname: "Pérez",
   email: "juan.perez@example.com",
   phone: "+52 55 1234 5678",
+  profileimg: "https://example.com/profile.jpg",
 }
 
 interface UserProfileProps {
@@ -25,6 +26,7 @@ export default function UserProfile({ user = userInfo }: UserProfileProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [loading, setLoading] = useState(true)
   const [formData, setFormData] = useState<User>({ ...user })
+  const [imgProfile, setImgProfile] = useState<string>("")
   const [originalData, setOriginalData] = useState<User>({ ...user })
 
   // Update original data when user prop changes
@@ -35,7 +37,7 @@ export default function UserProfile({ user = userInfo }: UserProfileProps) {
     if (localStorage.getItem("user")) {
       const storedUser = JSON.parse(localStorage.getItem("user") || "")
       console.log(storedUser);
-      
+
       if (storedUser.direccion == null) {
         storedUser.direccion = {
           calle: "",
@@ -50,6 +52,7 @@ export default function UserProfile({ user = userInfo }: UserProfileProps) {
       setFormData(() => ({
         ...storedUser,
       }))
+      setImgProfile(storedUser.profileimg)
       setLoading(false)
     }
 
@@ -145,11 +148,12 @@ export default function UserProfile({ user = userInfo }: UserProfileProps) {
 
   return (
     <div className="container mx-auto py-6">
-     <div className="flex items-center justify-center mb-6">
-      <h1>Pagina de prueba, profavor asegurese de no insertar datos reales ^^ </h1>
-     </div>
+      <div className="flex items-center justify-center mb-6">
+        <h1>Pagina de prueba, profavor asegurese de no insertar datos reales ^^ </h1>
+      </div>
       <Card className="max-w-3xl mx-auto">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          {/* Avatar 
           {loading ? (
             <Loader2 />
           ):(
@@ -160,11 +164,21 @@ export default function UserProfile({ user = userInfo }: UserProfileProps) {
               style="shape"
             />
           </div>
+          )}*/}
+
+          {loading ? (
+            <div className="flex items-center justify-center">
+              <Loader2 />
+            </div>
+          ) : (
+            <div className="flex items-center justify-center ">
+              <img width={100} height={100} className="aspect-square rounded-full object-cover object-center" src={imgProfile} alt="" />
+            </div>
           )}
           <div>
             <CardTitle className="text-2xl">Información del Usuario</CardTitle>
             <CardDescription>Detalles personales y dirección del usuario</CardDescription>
-          </div>          
+          </div>
           {!isEditing ? (
             <Button onClick={startEditing} className="flex items-center gap-2 bg-cyan-600 hover:cursor-pointer hover:bg-cyan-800">
               <Pencil className="h-4 w-4" />
@@ -185,11 +199,11 @@ export default function UserProfile({ user = userInfo }: UserProfileProps) {
         </CardHeader>
         <CardContent className="space-y-6 pt-4">
           {/* Información Personal */}
-          {loading? (
+          {loading ? (
             <div className="flex justify-center items-center">
               <Loader2></Loader2>
             </div>
-          ):(
+          ) : (
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Información Personal</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -231,10 +245,10 @@ export default function UserProfile({ user = userInfo }: UserProfileProps) {
             </div>
           )}
           <div>
-          <Button onClick={logout} className="flex items-center gap-2 bg-red-600 hover:cursor-pointer hover:bg-red-800 text-white" variant="outline">
-                <LogOut className="h-4 w-4" />
-                Cerrar Sesión
-              </Button>
+            <Button onClick={logout} className="flex items-center gap-2 bg-red-600 hover:cursor-pointer hover:bg-red-800 text-white" variant="outline">
+              <LogOut className="h-4 w-4" />
+              Cerrar Sesión
+            </Button>
           </div>
         </CardContent>
       </Card>
