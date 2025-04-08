@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox.tsx"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form.tsx"
 import { registrationSchema, type RegistrationFormValues } from "@/lib/schemas/registration-schema.ts"
-import { API_URL } from "@/lib/utils.ts"
+import { BASE_URL } from "@/lib/utils.ts"
 
 export default function RegistrationForm() {
   const [showPassword, setShowPassword] = useState(false)
@@ -77,7 +77,7 @@ export default function RegistrationForm() {
 
     if (data.insertAddress) {
       try {
-        const response = await fetch(`${API_URL}/createUserWithAddress`, {
+        const response = await fetch(`${BASE_URL}/createUserWithAddress`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
