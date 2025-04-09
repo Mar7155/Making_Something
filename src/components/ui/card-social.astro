@@ -1,0 +1,40 @@
+---
+import { Facebook, Instagram, Github } from "@lucide/astro";
+import WhatsApp from "@/components/icons/whatsapp-svg.astro";
+---
+
+<div
+    id="card-social"
+    class="p-8 flex flex-col gap-6 justify-center items-center border-1 
+    border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] 
+    transition-all rounded-md"
+>
+    <ul class="flex gap-4">
+        <li>
+            <a href="/Proximamente">
+                <Facebook class="w-12 h-12" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.instagram.com/making.something_/"
+                target="_blank"
+            >
+                <Instagram class="w-12 h-12"/>
+            </a>
+        </li>
+    </ul>
+    <ul class="flex gap-4">
+        <li>
+            <a href="https://wa.me/qr/AHFH55RNIGJ4J1" target="_blank">
+                <WhatsApp />
+            </a>
+        </li>
+        <li>
+            <a href="/Proximamente">
+                <Github class="w-12 h-12" />
+            </a>
+        </li>
+    </ul>
+</div>
+

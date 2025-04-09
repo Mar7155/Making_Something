@@ -9,7 +9,7 @@ import { Input } from "../ui/input.tsx";
 
 const formSchema = z.object({
   name: z.string().min(4, "El nombre debe tener almenos 3 caracteres"),
-  email: z.string().email(),
+  email: z.string().email("El correo no es valido"),
   message: z.string().min(10, "El mensaje debe tener almenos 10 caracteres"),
 })
 
