@@ -14,25 +14,25 @@ export default function Slider() {
             >
                 <SwiperSlide className="py-18">
                     <Card 
-                        title={"producto 1"} 
+                        title={"Pines 5.6cm"} 
                         description={"lorem ipsum dolor nose nose nose"}
                     />
                 </SwiperSlide>
                 <SwiperSlide className="px-10 py-18">
                     <Card 
-                        title={"producto 1"} 
-                        description={"lorem ipsum dolor nose nose nose"}
+                        title={"Pines 3.2cm"} 
+                        description={"Pines 3.2cm"}
                     />
                 </SwiperSlide>
                 <SwiperSlide className="px-10 py-18">
                     <Card 
-                        title={"producto 1"} 
-                        description={"lorem ipsum dolor nose nose nose"}
+                        title={"Pines magneticos 5.6cm"} 
+                        description={""}
                     />
                 </SwiperSlide>
                 <SwiperSlide className="px-10 py-18">
                     <Card 
-                        title={"producto 1"} 
+                        title={"Pines magneticos destapadores 5.6cm"} 
                         description={"lorem ipsum dolor nose nose nose"}
                     />
                 </SwiperSlide>

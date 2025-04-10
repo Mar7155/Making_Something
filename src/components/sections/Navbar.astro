@@ -4,8 +4,8 @@ import Button from "../ui/buttons/PrimaryButton.astro";
 import SecondaryButton from "../ui/buttons/SecondaryButton.astro";
 ---
 
-<header class="fixed w-full z-50">
-    <nav class="flex container mx-auto py-6 px-4 items-center justify-between bg-primary">
+<header class="fixed w-full z-50 bg-primary">
+    <nav class="flex container mx-auto py-6 px-4 items-center justify-between">
         <div>
             <a href="/" class="flex items-center gap-2">
                 <img src="/logo.svg" alt="logo" class="w-10 h-10" />
@@ -13,7 +13,7 @@ import SecondaryButton from "../ui/buttons/SecondaryButton.astro";
             </a>
         </div>
         <div class="pl-12">
-            <ul class="items-center md:gap-8 text-nowrap hidden md:flex">
+            <ul class="items-center md:gap-8 text-nowrap hidden xl:flex">
                 <li>
                     <Button href="#home" text="Home" color="200,0,255,0.8"></Button>
                 </li>
@@ -29,13 +29,13 @@ import SecondaryButton from "../ui/buttons/SecondaryButton.astro";
             </ul>
         </div>
 
-        <div class="hidden gap-4 items-center md:flex bg-">
+        <div class="hidden gap-4 items-center xl:flex bg-">
             <SecondaryButton href="/Sign" text="Registrarse" color="bg-amber-400" />
             <SecondaryButton href="/Login" text="Iniciar sesion" color="bg-white-400" />
         </div>
             
-        <div class="md:hidden">
-            <button type="button" onclick="handleClick()" class="hamburger" aria-label="menu">
+        <div class="xl:hidden">
+            <button type="button" onclick="handleClick()" class="hamburger hover:cursor-pointer" aria-label="menu">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="h-6 w-6"

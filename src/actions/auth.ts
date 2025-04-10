@@ -1,6 +1,6 @@
 "use server"
 
-import { registrationSchema, type RegistrationFormValues } from "@/lib/validations/registration-schema"
+import { registrationSchema, type RegistrationFormValues } from "@/lib/schemas/registration-schema.ts"
 
 export async function registerUser(formData: RegistrationFormValues) {
   // Validar los datos del formulario con Zod
