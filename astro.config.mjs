@@ -16,6 +16,11 @@ export default defineConfig({
     ssr: {
       noExternal: ['swiper']
     },
+    build: {
+      rollupOptions: {
+        external: ['@/components/ui/card']
+      }
+    }
   },
 
   env:{
