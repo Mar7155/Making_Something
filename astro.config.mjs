@@ -18,7 +18,7 @@ export default defineConfig({
     },
     build: {
       rollupOptions: {
-        external: ["swiper", "swiper/react", "swiper/css", "@/components/ui/card.tsx"], // Add the module(s) you want to externalize
+        external: ["swiper", "swiper/react", "swiper/css"], // Add the module(s) you want to externalize
       },
     },
   },
