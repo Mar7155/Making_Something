@@ -1,16 +1,27 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import "/node_modules/swiper/swiper-bundle.css";
 import Card from "./preview-card.tsx";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination, EffectCreative } from "swiper/modules";
 
 export default function Slider() {
     return (
         <>
             <Swiper className="mySwiper z-10"
-                modules={[Navigation, Pagination, Autoplay]}
+                modules={[Navigation, Pagination, Autoplay, EffectCreative]}
                 loop={true}
-                //autoplay={{ delay:5000 }}
+                autoplay={{ delay:5000 }}
                 tabIndex={10}
+                effect="creative"
+                creativeEffect={{
+                    prev: {
+                        translate: [0, 0, -400],
+                        scale: 0.5,
+                    },
+                    next: {
+                        translate: ["100%", 0, 0],
+                        scale: 0.5,
+                    },
+                }}
             >
                 <SwiperSlide className="py-18">
                     <Card 
