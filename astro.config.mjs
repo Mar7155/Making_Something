@@ -29,7 +29,7 @@ export default defineConfig({
     }
   },
 
-  output: 'static',
+  output: 'server',
   adapter: netlify(),
   integrations: [react()]
 });
