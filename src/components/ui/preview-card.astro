@@ -2,13 +2,14 @@
 import { Tag } from '@lucide/astro';
 
 interface Props {
+    id: string;
     slug: string;
     name: string;
     description: string;
     price?: number;
     imageUrl?: string;
 }
-const { slug, name, description }: Props = Astro.props;
+const { id, slug, name, description }: Props = Astro.props;
 ---
 
 <div class="flex flex-col justify-center items-center">

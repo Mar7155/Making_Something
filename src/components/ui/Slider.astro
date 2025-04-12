@@ -2,8 +2,7 @@
 import Card from "./preview-card.astro";
 import { getCollection } from "astro:content";
 
-const products = await getCollection('products');
-
+const products = await getCollection("products");
 ---
 
 <link
@@ -26,10 +25,11 @@ const products = await getCollection('products');
         {
             products.map((product) => {
                 const { slug, data } = product.data;
-                const { name, description, price, imageUrl } = data;
+                const { id, name, description } = data;
                 return (
                     <div class="swiper-slide py-18">
                         <Card
+                            id={id}
                             slug={slug}
                             name={name}
                             description={description}
