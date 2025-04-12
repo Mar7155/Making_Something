@@ -1,4 +1,4 @@
-import { z } from "astro:content";
+import { z } from "zod";
 
 export const productSchema = z.object({
     slug: z.string().min(1).trim(),
