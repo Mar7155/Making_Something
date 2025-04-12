@@ -1,0 +1,42 @@
+[
+    {
+        "id": "1",
+        "slug": "Pines 5.6cm",
+        "data": {
+            "name": "Pin 5.6cm",
+            "description": "Description for product 1",
+            "price": 10.99,
+            "imageUrl": "/images/product1.jpg"
+        }
+    },
+    {
+        "id": "2",
+        "slug": "Pines 3.2cm",
+        "data": {
+            "name": "Pin 3.2cm",
+            "description": "Description for product 2",
+            "price": 20.99,
+            "imageUrl": "/images/product2.jpg"
+        }
+    },
+    {
+        "id": "3",
+        "slug": "Pines magneticos",
+        "data": {
+            "name": "Pin magnetico",
+            "description": "Description for product 1",
+            "price": 10.99,
+            "imageUrl": "/images/product1.jpg"
+        }
+    },
+    {
+        "id": "4",
+        "slug": "Pines magneticos destapadores",
+        "data": {
+            "name": "Pin magnetico destapador",
+            "description": "Description for product 2",
+            "price": 20.99,
+            "imageUrl": "/images/product2.jpg"
+        }
+    }    
+]

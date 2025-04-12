@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "astro:content"
 
 export const registrationSchema = z.object({
   name: z.string().min(2, { message: "El nombre debe tener al menos 2 caracteres" }).trim(),

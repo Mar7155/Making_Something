@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "astro:content";
 
 export const loginSchema = z.object({
     email: z.string().nonempty("Ingresa tu email"),
