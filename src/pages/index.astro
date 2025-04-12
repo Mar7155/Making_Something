@@ -2,7 +2,7 @@
 import Navbar from "@/components/sections/Navbar.astro";
 import Layout from "../layouts/Layout.astro";
 import SecondaryButton from "@/components/ui/buttons/SecondaryButton.astro";
-import Slider from "@/components/ui/Slider.tsx";
+import Slider from "@/components/ui/Slider.astro";
 import ContactForm from "@/components/forms/ContactForm.tsx";
 import Footer from "@/components/sections/Footer.astro";
 import CardService from "@/components/ui/card-service.astro";
@@ -63,7 +63,7 @@ import { RefreshCw } from "@lucide/astro";
                 <SecondaryButton href="/" text="Ver más" color="bg-green-400" />
             </div>
             <div class="lg:w-1/3 w-full object-contain md:flex py-10 lg:ml-20">
-                <Slider client:only />
+                <Slider />
             </div>
         </section>
 
