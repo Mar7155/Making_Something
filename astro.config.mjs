@@ -15,7 +15,7 @@ export default defineConfig({
     plugins: [tailwindcss(), react()],
     resolve: {
       alias: {
-        '@/components': './src/components'
+        '@/components/ui/card.tsx': './src/components/ui/card.tsx'
       }
     }
   },
