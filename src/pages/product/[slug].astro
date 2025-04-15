@@ -8,11 +8,11 @@ import {
     CardContent,
     CardFooter,
     CardHeader,
-} from "../../components/ui/card.tsx";
-import { Button } from "../../components/ui/button.tsx";
-import { Input } from "../../components/ui/input.tsx";
+} from "@/components/ui/card.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import { Input } from "@/components/ui/input.tsx";
 import { Plus, Minus } from "@lucide/astro";
-import { SliderProduct } from "../../components/ui/slider-product.tsx";
+import { SliderProduct } from "@/components/ui/slider-product.tsx";
 
 export async function getStaticPaths() {
     const products = await getCollection("products");
