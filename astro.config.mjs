@@ -13,21 +13,6 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   vite: {
     plugins: [tailwindcss(), react()],
-    resolve: {
-      alias: {
-        '@/components/ui/card': './src/components/ui/card'
-      }
-    },
-    ssr: {
-      noExternal: ['@/components'],
-    },
-    build: {
-      rollupOptions: {
-        external: [
-          "@/components/ui/card"
-        ],
-      },
-    },
   },
 
   env:{
