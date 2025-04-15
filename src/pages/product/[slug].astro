@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import { getCollection } from "astro:content";
 
 import Layout from "@/layouts/Layout.astro";
@@ -7,12 +8,18 @@ import { Input } from "@/components/ui/input.tsx";
 import { Plus, Minus } from "@lucide/astro";
 import { SliderProduct } from "@/components/ui/slider-product.tsx";
 
-const { params } = Astro
+export async function getStaticPaths() {
+    const products = await getCollection("products");
 
-const products = await getCollection("products");
+    return products.map((product) => ({
+        params: { slug: product.data.slug },
+        props: { product: product.data },
+    }));
+}
 
-const product = products.find(p => p.data.slug === params.slug)    
 
+const { product } = Astro.props;
+const { name, description, price, imagesUrl } = product.data;
 ---
 
 <Layout>
@@ -24,23 +31,23 @@ const product = products.find(p => p.data.slug === params.slug)
                 class="flex justify-center items-center gap-8 w-[400px] h-full border-gray-300 shadow-lg rounded-sm border bg-card text-card-foreground"
             >
                 <div class="p-6">
-                    <SliderProduct productImages={product?.data.data.imagesUrl || ["example"]} client:idle></SliderProduct>
+                    <SliderProduct productImages={imagesUrl} client:idle></SliderProduct>
                 </div>
             </div>
 
             <div
                 class="w-[400px] h-full py-12 px-8 justify-between border-1 border-gray-300 rounded-sm shadow-lg bg-card text-card-foreground"
             >
-                <div class="text-3xl font-extrabold flex flex-col space-y-1.5 p-6">{product?.data.data.name}</div>
+                <div class="text-3xl font-extrabold flex flex-col space-y-1.5 p-6">{name}</div>
                 <div class="flex flex-col gap-8 h-1/2 p-6 pt-0">
                     <div>
                         <h2 class="text-lg font-medium">
-                            ${product?.data.data.price} MXN C/U
+                            ${price} MXN C/U
                         </h2>
                     </div>
                     <div class="mt-4">
                         <p>
-                            {product?.data.data.description}
+                            {description}
                         </p>
                     </div>
                 </div>
