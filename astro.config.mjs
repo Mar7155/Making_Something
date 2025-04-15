@@ -17,7 +17,14 @@ export default defineConfig({
       alias: {
         '@/components/ui/card.tsx': './src/components/ui/card.tsx'
       }
-    }
+    },
+    build: {
+      rollupOptions: {
+        external: [
+          "@/components/ui/card"
+        ],
+      },
+    },
   },
 
   env:{
