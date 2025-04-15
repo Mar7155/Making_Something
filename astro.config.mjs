@@ -14,12 +14,13 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), react()],
     ssr: {
-      noExternal: ['swiper']
+      external: ['broken-npm-package'],
     },
     build: {
       rollupOptions: {
         external: ["swiper", "swiper/react", "swiper/css", "@/components/ui/card"], // Add the module(s) you want to externalize
       },
+      
     },
   },
 
@@ -31,5 +32,5 @@ export default defineConfig({
 
   output: 'server',
   adapter: netlify(),
-  integrations: [react(), netlify()]
+  integrations: [react()]
 });
