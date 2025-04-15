@@ -1,6 +1,5 @@
 import * as React from "react"
 
-import { Card, CardContent } from "@/components/ui/card.tsx"
 import {
     Carousel,
     CarouselContent,
@@ -42,11 +41,7 @@ export function SliderProduct({productImages}: imagesProps) {
                 {productImages.map((img, index) => (
                     <CarouselItem key={index} data-slide>
                         <div className="p-1">
-                            <Card className="rounded-sm">
-                                <CardContent className="flex aspect-square items-center justify-center p-6">
-                                    <img className="rounded-sm" src={img}></img>
-                                </CardContent>
-                            </Card>
+                            <img className="rounded-sm" src={img}></img>
                         </div>
                     </CarouselItem>
                 ))}
@@ -57,7 +52,7 @@ export function SliderProduct({productImages}: imagesProps) {
                         <img  
                             src={img}  
                             alt="imagen para seleccion en el carrusel" 
-                            className="opacity-60 hover:opacity-100 transition-opacity duration-200"
+                            className="opacity-60 hover:opacity-100 transition-opacity duration-200 h-full w-full object-cover rounded-xs"
                         />
                     </button>
                 ))}                
