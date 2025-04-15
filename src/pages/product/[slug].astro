@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import { getCollection } from "astro:content";
 
 import Layout from "@/layouts/Layout.astro";
@@ -7,17 +8,17 @@ import {
     CardContent,
     CardFooter,
     CardHeader,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+} from "../../components/ui/card.tsx";
+import { Button } from "../../components/ui/button.tsx";
+import { Input } from "../../components/ui/input.tsx";
 import { Plus, Minus } from "@lucide/astro";
-import { SliderProduct } from "@/components/ui/slider-product";
+import { SliderProduct } from "../../components/ui/slider-product.tsx";
 
 export async function getStaticPaths() {
     const products = await getCollection("products");
 
     return products.map((product) => ({
-        params: { id: product.data.slug },
+        params: { slug: product.data.slug },
         props: { product: product.data },
     }));
 }
