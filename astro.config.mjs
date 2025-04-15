@@ -21,7 +21,7 @@ export default defineConfig({
     build: {
       rollupOptions: {
         external: [
-          "@/components/ui/card"
+          "@/components/ui/card.tsx"
         ],
       },
     },
