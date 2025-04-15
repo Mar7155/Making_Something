@@ -1,13 +1,13 @@
 import * as React from "react"
 
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card.tsx"
 import {
     Carousel,
     CarouselContent,
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel.tsx"
 import { useRef } from "react"
 
 interface imagesProps {

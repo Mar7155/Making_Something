@@ -13,6 +13,11 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   vite: {
     plugins: [tailwindcss(), react()],
+    resolve: {
+      alias: {
+        '@/components': './src/components'
+      }
+    }
   },
 
   env:{
