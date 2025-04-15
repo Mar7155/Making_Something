@@ -15,13 +15,16 @@ export default defineConfig({
     plugins: [tailwindcss(), react()],
     resolve: {
       alias: {
-        '@/components/ui/card.tsx': './src/components/ui/card.tsx'
+        '@/components/ui/card': './src/components/ui/card'
       }
+    },
+    ssr: {
+      noExternal: ['@/components'],
     },
     build: {
       rollupOptions: {
         external: [
-          "@/components/ui/card.tsx"
+          "@/components/ui/card"
         ],
       },
     },
