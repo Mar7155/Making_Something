@@ -13,15 +13,6 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   vite: {
     plugins: [tailwindcss(), react()],
-    ssr: {
-      external: ['broken-npm-package'],
-    },
-    build: {
-      rollupOptions: {
-        external: ["swiper", "swiper/react", "swiper/css", "@/components/ui/card"], // Add the module(s) you want to externalize
-      },
-      
-    },
   },
 
   env:{
