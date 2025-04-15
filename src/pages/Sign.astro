@@ -1,12 +1,12 @@
 ---
-import Layout from "@/layouts/Layout.astro";
 import Register from "@/components/forms/registration-form.tsx"
+import Layout2 from "@/layouts/Layout2.astro";
 ---
 
-<Layout>
+<Layout2>
     <section class="container m-auto flex justify-center items-center">  
         <div class="w-full md:w-1/2 py-20">
-            <Register client:load></Register>
+            <Register client:idle></Register>
         </div>   
     </section>
-</Layout>
+</Layout2>

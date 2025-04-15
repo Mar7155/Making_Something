@@ -9,7 +9,8 @@ interface Props {
     price?: number;
     imageUrl?: string;
 }
-const { id, slug, name, description }: Props = Astro.props;
+const { id, slug, name, description, imageUrl }: Props = Astro.props;
+
 ---
 
 <div class="flex flex-col justify-center items-center">
@@ -23,16 +24,14 @@ const { id, slug, name, description }: Props = Astro.props;
                 <Tag size={30}/>
             </div>
             <div
-                class="absolute w-full top-10 left-0 rounded-2xl hover:scale-105 transition"
+                class="w-full h-full overflow-hidden top-10 left-0 rounded-2xl transition"
             >
                 <img
-                    src="/mercedes.png"
+                    src={imageUrl}
                     alt={description}
-                    width="315"
-                    height="377"
                     loading="lazy"
                     decoding="async"
-                    class="object-bottom absolute group-hover:scale-105 transition"
+                    class="w-full h-full object-cover object-center transition"
                 />
             </div>
             <button

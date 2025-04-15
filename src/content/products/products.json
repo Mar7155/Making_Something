@@ -4,9 +4,14 @@
         "data": {
             "id": "1",
             "name": "Pin 5.6cm",
-            "description": "Description for product 1",
-            "price": 10.99,
-            "imageUrl": "/images/product1.jpg"
+            "description": "Pin metalico personalizado redondo 5.6cm diametro",
+            "price": 25.00,
+            "previewImg": "/pin-frontal-5.6cm.jpg",
+            "imagesUrl": [
+                "/pin-frontal-5.6cm.jpg",
+                "/pin-atras-5.6cm.jpg",
+                "/pin-uso-5.6cm.jpg"
+            ]
         }
     },
     {
@@ -14,29 +19,29 @@
         "data": {
             "id": "2",
             "name": "Pin 3.2cm",
-            "description": "Description for product 2",
-            "price": 20.99,
-            "imageUrl": "/images/product2.jpg"
-        }
-    },
-    {
-        "slug": "Pines magneticos",
-        "data": {
-            "id": "3",
-            "name": "Pin magnetico",
-            "description": "Description for product 1",
-            "price": 10.99,
-            "imageUrl": "/images/product1.jpg"
+            "description": "Pin metalico personalizado redondo 3.2cm diametro",
+            "price": 15.00,
+            "previewImg": "/pin-frontal-3.2cm.jpg",
+            "imagesUrl": [
+                "/pin-frontal-3.2cm.jpg",
+                "/pin-atras-3.2cm.jpg"
+            ]
         }
     },
     {
         "slug": "Pines magneticos destapadores",
         "data": {
-            "id": "4",
+            "id": "3",
             "name": "Pin magnetico destapador",
-            "description": "Description for product 2",
-            "price": 20.99,
-            "imageUrl": "/images/product2.jpg"
+            "description": "Pin metalico personalizado redondo magenticos con destapador de botella 5.6cm diametro",
+            "price": 40.00,
+            "previewImg": "/pin-destapador-frontal-5.6cm.jpg",
+            "imagesUrl": [
+                "/pin-destapador-frontal-5.6cm.jpg",
+                "/pin-destapador-atras-5.6cm.jpg",
+                "/pin-destapador-frontal-5.6cm (2).jpg",
+                "/pin-destapador-atras-5.6cm (2).jpg"
+            ]
         }
-    }    
+    }
 ]

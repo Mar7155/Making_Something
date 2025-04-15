@@ -1,7 +1,5 @@
 ---
-import Navbar from "@/components/sections/Navbar.astro";
 import "../styles/global.css";
-import Footer from "@/components/sections/Footer.astro";
 ---
 <!doctype html>
 <html lang="en">
@@ -11,22 +9,15 @@ import Footer from "@/components/sections/Footer.astro";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Making Something</title>
-		<link
-            rel="stylesheet"
-            href="https://unpkg.com/swiper/swiper-bundle.min.css"
-        />
 	</head>
 	<body class="bg-primary dark:bg-gray-900">
-		<Navbar />		
-			<slot />		
-		<Footer />
+		<slot />
 	</body>
 </html>
 
 <style is:global>
 	*{
 		scroll-behavior: smooth;
-			
 	}
 	html,
 	body {

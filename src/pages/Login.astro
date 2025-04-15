@@ -1,13 +1,13 @@
 ---
-import Layout from "@/layouts/Layout.astro";
 import Log from "@/components/forms/Login.tsx"
+import Layout2 from "@/layouts/Layout2.astro";
 
 ---
 
-<Layout>
+<Layout2>
     <section class="container mx-auto flex justify-center items-center">  
         <div class="w-full md:w-1/2 ">
-            <Log client:load ></Log>
+            <Log client:idle ></Log>
         </div>   
     </section>
-</Layout>
+</Layout2>

@@ -1,5 +1,4 @@
 ---
-import Navbar from "@/components/sections/Navbar.astro";
 import Layout from "../layouts/Layout.astro";
 import SecondaryButton from "@/components/ui/buttons/SecondaryButton.astro";
 import Slider from "@/components/ui/Slider.astro";
@@ -11,8 +10,6 @@ import { RefreshCw } from "@lucide/astro";
 ---
 
 <Layout>
-    <Navbar />
-    <main class="min-w-screen h-full mx-auto">
         <section
             id="home"
             class="h-full flex justify-center items-center flex-col lg:flex-row px-4 xl:px-40 gap-10 md:gap-0"
@@ -44,7 +41,7 @@ import { RefreshCw } from "@lucide/astro";
 
         <section
             id="products"
-            class="py-20 h-min px-4 md:px-24 xl-2:px-60 flex justify-center items-center flex-col xl:flex-row gap-10 md:gap-0"
+            class="py-20 min-h-screen px-4 md:px-24 xl-2:px-60 flex justify-center items-center flex-col xl:flex-row gap-10 md:gap-0"
         >
             <div
                 class="flex flex-col gap-6 justify-center items-start lg:w-5/6 xl:w-1/4"
@@ -69,7 +66,7 @@ import { RefreshCw } from "@lucide/astro";
 
         <section
             id="services"
-            class="py-20 h-min lg:h-full px-4 flex justify-center items-center flex-col"
+            class="py-20 min-h-screen lg:h-full px-4 flex justify-center items-center flex-col"
         >
             <div class="py-20 px-2 md:px-20 xl:px-100">
                 <h2 class="font-extrabold text-4xl text-center">
@@ -141,11 +138,6 @@ import { RefreshCw } from "@lucide/astro";
                     <RefreshCw />
             </button>
         </section>
-
-        <section id="footer" class="pt-20">
-            <Footer />
-        </section>
-    </main>
 </Layout>
 
 

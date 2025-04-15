@@ -7,6 +7,7 @@ export const productSchema = z.object({
         name: z.string().min(1).trim(),
         description: z.string().min(1).trim(),
         price: z.number().positive(),
-        imageUrl: z.string(),
+        previewImg: z.string(),
+        imagesUrl: z.array(z.string()),
     }),
 }); 
