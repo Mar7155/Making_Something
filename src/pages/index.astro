@@ -3,10 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import SecondaryButton from "@/components/ui/buttons/SecondaryButton.astro";
 import Slider from "@/components/ui/Slider.astro";
 import ContactForm from "@/components/forms/ContactForm.tsx";
-import Footer from "@/components/sections/Footer.astro";
 import CardService from "@/components/ui/card-service.astro";
 import CardSocial from "@/components/ui/card-social.astro";
 import { RefreshCw } from "@lucide/astro";
+import Badge from "@/components/ui/badge.astro";
 ---
 
 <Layout>
@@ -69,11 +69,11 @@ import { RefreshCw } from "@lucide/astro";
             class="py-20 min-h-screen lg:h-full px-4 flex justify-center items-center flex-col"
         >
             <div class="py-20 px-2 md:px-20 xl:px-100">
-                <h2 class="font-extrabold text-4xl text-center">
+                <h2 class="font-extrabold text-5xl text-center">
                     Descubre todos los servicios que ofrecemos 🛠️
                 </h2>
             </div>
-            <div class="grid xl:grid-cols-2 gap-8 w-full md:w-4/6">
+            <div class="grid xl:grid-cols-2 gap-8 lg:gap-12 w-full md:w-4/6">
                 <div class="flex justify-center items-center">
                     <CardService
                         name="Creación de Pines Personalizados🔥"
@@ -81,26 +81,29 @@ import { RefreshCw } from "@lucide/astro";
                         description="Diseñamos y fabricamos pines personalizados para cualquier ocasión. ¡Haz que tu estilo brille!"
                     />
                 </div>
-                <div class="flex justify-center items-center">
+                <div class="relative flex justify-center items-center">
                     <CardService
                         name="Diseño e impresion 3D💡"
                         description="Fabricamos desde juguetes, piezas de coleccion y cosplay. ¡Haz realidad tus ideas!"
                         color="0,165,255,1"
                     />
+                    <Badge text="Proximamente"></Badge>
                 </div>
-                <div class="flex justify-center items-center">
+                <div class="relative flex justify-center items-center">
                     <CardService
                         name="Diseño y programacion web💻"
                         color="180,0,190,1"
                         description="Te gustaria tener tu propia pagina web? Te ayudamos a crearla desde cero. para neogocios, portafolios, blogs, proyectos, etc."
                     />
+                    <Badge text="Proximamente"></Badge>
                 </div>
-                <div class="flex justify-center items-center">
+                <div class="relative flex justify-center items-center">
                     <CardService
                         name="Autos a escala🚗"
                         color="255,130,0,1"
                         description="Proximamente a la venta autos a escala 1:24 ideales para coleccionistas y amantes de los autos. ¡Haz tu colección unica!"
                     />
+                    <Badge text="Proximamente"></Badge>
                 </div>
             </div>
         </section>

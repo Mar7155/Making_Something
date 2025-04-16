@@ -36,7 +36,7 @@ export function SliderProduct({productImages}: imagesProps) {
 
             }} 
             ref={carouselRef}
-            className="w-full max-w-xs">
+            className="w-full max-w-xs hover:cursor-grab">
             <CarouselContent>
                 {productImages.map((img, index) => (
                     <CarouselItem key={index} data-slide>

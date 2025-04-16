@@ -1,7 +1,7 @@
 {
   "name": "making_something",
   "type": "module",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
