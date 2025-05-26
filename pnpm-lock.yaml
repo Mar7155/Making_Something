@@ -78,7 +78,7 @@ importers:
         specifier: ^19.0.4
         version: 19.0.4(@types/react@19.0.12)
       astro:
-        specifier: ^5.7.0
+        specifier: ^5.8.0
         version: 5.8.0(@netlify/blobs@8.1.2)(@types/node@22.15.21)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.38.0)(typescript@5.8.2)(yaml@2.7.1)
       avvvatars-react:
         specifier: ^0.4.2
