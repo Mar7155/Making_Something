@@ -8,7 +8,7 @@ interface Props {
 const { href, text, color} = Astro.props as Props;
 ---
 
-<a href={href} class="relative px-6 py-2 text-3xl text-black font-bold border-black rounded-lg hover:border-1 transition md:text-lg" style={`--shadow-color: rgba(${color})`}>
+<a href={href} class="relative px-6 py-2 text-md text-black font-bold border-black rounded-lg hover:border-1 transition lg:text-xl" style={`--shadow-color: rgba(${color})`}>
     {text}
   </a>
   

@@ -1,5 +1,8 @@
 ---
+import Sidebar2 from "@/components/sections/Sidebar2.astro";
 import "../styles/global.css";
+import Footer from "@/components/sections/Footer.astro";
+import { ClientRouter } from "astro:transitions";
 ---
 <!doctype html>
 <html lang="en">
@@ -9,15 +12,22 @@ import "../styles/global.css";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Making Something</title>
+		<link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper/swiper-bundle.min.css"
+        />
+		<ClientRouter />
 	</head>
 	<body class="bg-primary dark:bg-gray-900">
-		<slot />
+		<Sidebar2 />	
+			<slot />		
+		<Footer />
 	</body>
 </html>
 
 <style is:global>
 	*{
-		scroll-behavior: smooth;
+		scroll-behavior: smooth;	
 	}
 	html,
 	body {

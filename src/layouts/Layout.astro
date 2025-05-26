@@ -1,7 +1,8 @@
 ---
-import Navbar from "@/components/sections/Navbar.astro";
 import "../styles/global.css";
 import Footer from "@/components/sections/Footer.astro";
+import { ClientRouter } from "astro:transitions";
+import Sidebar from "@/components/sections/Sidebar.astro";
 ---
 <!doctype html>
 <html lang="en">
@@ -15,9 +16,10 @@ import Footer from "@/components/sections/Footer.astro";
             rel="stylesheet"
             href="https://unpkg.com/swiper/swiper-bundle.min.css"
         />
+		<ClientRouter />
 	</head>
 	<body class="bg-primary dark:bg-gray-900">
-		<Navbar />		
+		<Sidebar />	
 			<slot />		
 		<Footer />
 	</body>
@@ -25,8 +27,7 @@ import Footer from "@/components/sections/Footer.astro";
 
 <style is:global>
 	*{
-		scroll-behavior: smooth;
-			
+		scroll-behavior: smooth;	
 	}
 	html,
 	body {

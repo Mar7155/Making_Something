@@ -1,9 +1,16 @@
 ---
-import UserProfile from "@/components/sections/user-profile.tsx";
+import UserInfo from "@/components/sections/UserInfo";
 import Layout from "@/layouts/Layout.astro";
 
 ---
 
 <Layout>
-    <UserProfile client:idle></UserProfile>
+    <section class="flex flex-col items-center justify-center w-full min-h-screen mt-5 px-2">
+        <div class="flex items-center justify-center">
+            <p>Pagina de prueba, porfavor asegurese de no insertar datos reales ^^ </p>
+        </div>
+        <div class="container mx-auto pt-6">
+            <UserInfo client:idle />
+        </div>
+    </section>
 </Layaout>

@@ -1,0 +1,88 @@
+---
+import { PanelLeftCloseIcon, PanelRightCloseIcon } from "lucide-react";
+import Button from "../ui/buttons/PrimaryButton.astro";
+import LogginButtons from "../ui/buttons/LogginButtons.astro";
+
+const NavDirections = [
+    { href: "#home", text: "Inicio", color: "200,0,255,0.8" },
+    { href: "#products", text: "Productos", color: "0,165,255,0.8" },
+    { href: "#services", text: "Servicios", color: "40,200,0,0.8" },
+    { href: "#contact", text: "Contacto", color: "255,160,0,0.8" },
+    { href: "/Profile", text: "Perfil", color: "200,0,255,0.8" },
+];
+---
+
+<header class="fixed w-full z-10 bg-primary flex justify-center items-center">
+    <section
+        class="flex container mx-auto py-6 px-4 items-center gap-32 justify-between"
+    >
+        <div>
+            <a href="/" class="flex items-center gap-2">
+                <img src="/logo.svg" alt="logo" class="w-10 h-10" />
+                <div class="flex flex-col">
+                    <span class="text-lg font-bold">Making Something</span>
+                    <span class="text-center text-gray-400">(Beta 0.5.2)</span>
+                </div>
+            </a>
+        </div>
+        <button
+            type="button"
+            onclick="handleClick()"
+            class="hamburger p-2 rounded-md hover:cursor-pointer hover:bg-gray-300/65 border-1 hover:border-gray-200 transition-colors duration-200 z-20"
+            aria-label="menu"
+        >
+            <PanelLeftCloseIcon />
+        </button>
+    </section>
+    <aside
+        id="sidebar"
+        class="flex flex-col fixed w-1/2 h-full top-0 -right-20 bg-white px-7 border-1 border-gray-200 transform translate-x-full transition-transform duration-300 ease-in-out z-20 lg:w-[350px]"
+    >
+        <div class="w-full flex justify-end items-center pt-7">
+            <button
+                type="button"
+                onclick="handleClick()"
+                class="hamburger p-2 rounded-md hover:cursor-pointer hover:bg-gray-300/60 border-1 hover:border-gray-200 transition-colors duration-200 z-20"
+                aria-label="menu"
+            >
+                <PanelRightCloseIcon />
+            </button>
+        </div>
+        <div class="flex justify-center items-center pt-10">
+            <LogginButtons></LogginButtons>
+        </div>
+        <ul class="flex flex-col w-full h-full items-center pt-10 gap-12">
+            {
+                NavDirections.map((direction) => {
+                    return (
+                        <li>
+                            <button type="button" onclick="sidebarClick()">
+                                <Button
+                                    href={direction.href}
+                                    text={direction.text}
+                                    color={direction.color}
+                                />
+                            </button>
+                        </li>
+                    );
+                })
+            }
+        </ul>
+    </aside>
+</header>
+
+<script is:inline>
+    const handleClick = () => {
+        const sidebar = document.getElementById("sidebar");
+        if (sidebar.classList.contains("transform")) {
+            sidebar.classList.remove("transform");
+            sidebar.classList.remove("translate-x-full");
+            sidebar.classList.remove("-right-20");
+            sidebar.classList.add("right-0");
+            sidebar.classList.add("translate-x-30%");
+        } else {
+            sidebar.classList.add("transform");
+            sidebar.classList.add("translate-x-full");
+        }
+    };
+</script>

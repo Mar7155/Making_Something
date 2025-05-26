@@ -2,7 +2,7 @@
 export const prerender = true;
 import { getCollection } from "astro:content";
 
-import Layout from "@/layouts/Layout.astro";
+import ProductLayout from "@/layouts/ProductLayout.astro";
 import { Button } from "@/components/ui/button.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { Plus, Minus } from "@lucide/astro";
@@ -18,20 +18,20 @@ export async function getStaticPaths() {
 }
 
 const { product } = Astro.props;
-const { name, description, price, imagesUrl } = product.data;
+const { id, name, description, price, imagesUrl } = product.data;
 ---
 
-<Layout>
+<ProductLayout>
     <section
-        class="flex flex-col md:items-center justify-evenly px-4 lg:px-40 min-h-screen lg:flex-row w-full py-40 gap-24 lg:gap-0"
+        class="flex flex-col items-center justify-evenly px-4 lg:px-40 min-h-screen lg:flex-row w-full py-40 gap-24 lg:gap-0"
     >
-        <aside
+        <div
             class="flex justify-center gap-8 h-full border-gray-300 shadow-lg rounded-sm border bg-card text-card-foreground"
         >
             <div class="p-6">
                 <SliderProduct productImages={imagesUrl} client:idle />
             </div>
-        </aside>
+        </div>
 
         <article
             class="w-[400px] py-12 px-8 flex flex-col justify-center border-1 border-gray-300 rounded-sm shadow-lg bg-card text-card-foreground"
@@ -41,7 +41,7 @@ const { name, description, price, imagesUrl } = product.data;
             </div>
             <div class="flex flex-col gap-8 h-1/2 p-6 pt-0">
                 <div>
-                    <h2 class="text-lg font-medium">
+                    <h2 transition:name={`title-${name}`} class="text-lg font-medium">
                         ${price} MXN C/U
                     </h2>
                 </div>
@@ -52,7 +52,7 @@ const { name, description, price, imagesUrl } = product.data;
                 </div>
             </div>
             <div class="flex flex-col gap-4">
-                <div class="flex justify-center items-center p-6 pt-0">
+                <div class="flex justify-center items-center">
                     <Button
                         id="decrement"
                         className="bg-white hover:bg-gray-200 hover:cursor-pointer"
@@ -72,22 +72,45 @@ const { name, description, price, imagesUrl } = product.data;
                         <Plus color="black" />
                     </Button>
                 </div>
+                <div class="flex justify-center items-center gap-2">
+                    <Button
+                        id="increment-ten"
+                        className="bg-white hover:bg-gray-200 hover:cursor-pointer text-black"
+                    >
+                        <Plus color="black" />10
+                    </Button>
+                    <Button
+                        id="increment-thirty"
+                        className="bg-white hover:bg-gray-200 hover:cursor-pointer text-black"
+                    >
+                        <Plus color="black" />30
+                    </Button>
+                    <Button
+                        id="increment-fifty"
+                        className="bg-white hover:bg-gray-200 hover:cursor-pointer text-black"
+                    >
+                        <Plus color="black" />50
+                    </Button>
+                </div>
                 <button
                     class="px-6 py-2 w-full text-black rounded-sm bg-amber-400 hover:bg-amber-600 hover:cursor-pointer shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition"
                 >
                 <a href="https://wa.me/qr/AHFH55RNIGJ4J1" target="_blank">
-                    Realizar Pedido
+                    Añdir al carrito
                 </a>
                 </button>
             </div>
         </article>
     </section>
-</Layout>
+</ProductLayout>
 
 <script is:inline>
     const input = document.querySelector("#counter");
     const btnAdd = document.querySelector("#increment");
     const btnSub = document.querySelector("#decrement");
+    const btnAddTen = document.querySelector("#increment-ten");
+    const btnAddThirty = document.querySelector("#increment-thirty");
+    const btnAddFifty = document.querySelector("#increment-fifty");
 
     btnAdd?.addEventListener("click", () => {
         input.value = parseInt(input.value || "0") + 1;
@@ -96,5 +119,17 @@ const { name, description, price, imagesUrl } = product.data;
     btnSub?.addEventListener("click", () => {
         const current = parseInt(input.value || "0");
         input.value = current > 0 ? current - 1 : 0;
+    });
+
+    btnAddTen?.addEventListener("click", () => {
+        input.value = parseInt(input.value || "0") + 10;
+    });
+
+    btnAddThirty?.addEventListener("click", () => {
+        input.value = parseInt(input.value || "0") + 30;
+    });
+
+    btnAddFifty?.addEventListener("click", () => {
+        input.value = parseInt(input.value || "0") + 50;
     });
 </script>

@@ -41,10 +41,10 @@ import Badge from "@/components/ui/badge.astro";
 
         <section
             id="products"
-            class="py-20 min-h-screen px-4 md:px-24 xl-2:px-60 flex justify-center items-center flex-col xl:flex-row gap-10 md:gap-0"
+            class="py-20 min-h-screen px-4 md:px-80 flex justify-between items-center flex-col xl:flex-row gap-10 md:gap-0"
         >
             <div
-                class="flex flex-col gap-6 justify-center items-start lg:w-5/6 xl:w-1/4"
+                class="flex flex-col gap-6 justify-center items-start lg:w-3/6 "
             >
                 <p class="font-medium text-gray-500">
                     Explora nuestra selección de productos más vendidos
@@ -59,14 +59,14 @@ import Badge from "@/components/ui/badge.astro";
                 </p>
                 <SecondaryButton href="/" text="Ver más" color="bg-green-400" />
             </div>
-            <div class="lg:w-1/3 w-full object-contain md:flex py-10 lg:ml-20">
+            <div class="lg:w-1/3 w-full md:flex py-10">
                 <Slider />
             </div>
         </section>
 
         <section
             id="services"
-            class="py-20 min-h-screen lg:h-full px-4 flex justify-center items-center flex-col"
+            class="py-20 w-full min-h-screen lg:h-full px-4 flex justify-center items-center flex-col"
         >
             <div class="py-20 px-2 md:px-20 xl:px-100">
                 <h2 class="font-extrabold text-5xl text-center">
@@ -84,11 +84,12 @@ import Badge from "@/components/ui/badge.astro";
                 <div class="relative flex justify-center items-center">
                     <CardService
                         name="Diseño e impresion 3D💡"
-                        description="Fabricamos desde juguetes, piezas de coleccion y cosplay. ¡Haz realidad tus ideas!"
+                        description="Fabricamos juguetes, piezas de coleccion y cosplay. ¡Haz realidad tus ideas!"
                         color="0,165,255,1"
                     />
                     <Badge text="Proximamente"></Badge>
                 </div>
+                <!-- 
                 <div class="relative flex justify-center items-center">
                     <CardService
                         name="Diseño y programacion web💻"
@@ -97,6 +98,7 @@ import Badge from "@/components/ui/badge.astro";
                     />
                     <Badge text="Proximamente"></Badge>
                 </div>
+                -->
                 <div class="relative flex justify-center items-center">
                     <CardService
                         name="Autos a escala🚗"
@@ -130,12 +132,12 @@ import Badge from "@/components/ui/badge.astro";
             <div 
                 id="card-social"
                 class="p-6 xl:w-1/3 flex flex-col justify-center items-center">
-                <CardSocial ></CardSocial>
+                <CardSocial></CardSocial>
             </div>
             <div 
                 id="email-form"
                 class="hidden justify-center items-center p-6 xl:w-1/3">
-                <ContactForm client:load />
+                <ContactForm client:idle />
             </div>
             <button onclick="showEmailForm()" class="flex justify-center items-center p-4 border-1 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:cursor-pointer hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-shadow rounded-full">
                     <RefreshCw />

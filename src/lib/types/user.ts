@@ -1,19 +1,21 @@
-export interface User {
-    name: string
-    lastname: string
-    email: string
-    phone: string
-    profileimg?: string
-  }
+export interface Address {
+  street?: string
+  no_ext?: number
+  no_int?: number
+  cologne?: string
+  zip_code?: number
+  city?: string
+  state?: string
+}
 
-export interface UserWithAddress extends User {
-  direccion?: {
-    calle: string
-    numeroExterior: number
-    numeroInterior: number
-    colonia: string
-    codigoPostal: number
-    ciudad: string
-    estado: string
-  }
+export interface User {
+  id: string         // UUID local
+  clerk_id: string   // ID de Clerk 
+  name: string
+  lastname: string
+  email?: string
+  phone?: string
+  has_address: boolean
+  stripe_customer_id?: string // ID de Stripe 
+  address?: Address
 }

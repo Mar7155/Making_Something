@@ -9,7 +9,7 @@
   ],
   "compilerOptions": {
     "target": "es2015",
-    "lib": ["dom", "es2015"], 
+    "lib": ["dom", "ES2018"], 
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "strictNullChecks": true, // add if using `base` template

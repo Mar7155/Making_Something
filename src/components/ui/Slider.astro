@@ -17,10 +17,13 @@ const products = await getCollection("products");
 
     const swiper = new Swiper(".swiper", {
         loop: true,
+        autoplay: {
+            delay: 5000
+        }
     });
 </script>
 
-<div class="swiper z-10">
+<div class="swiper">
     <div class="swiper-wrapper">
         {
             products.map((product) => {
@@ -28,7 +31,7 @@ const products = await getCollection("products");
                 const { id, name, description, previewImg } = data;
                 return (
                     <div class="swiper-slide py-18">
-                        <PreviewCard
+                        <PreviewCard 
                             id={id}
                             slug={slug}
                             name={name}
