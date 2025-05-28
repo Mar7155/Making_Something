@@ -15,7 +15,7 @@ export default function UserInfo() {
   const { userInfo, loading, isEditingUser, isEditingAddress, formData, viewAddress, handleChange, startEditing, cancelEditing, saveChanges, deleteAddress, toggleaddressVisibility, AddAddress } = useUserInfo()
 
   const renderField = (field: string, label: string, type = "text", isNumeric = false) => {
-    // Get the value based on whether it's a nested field or not
+  
     let value: any
     if (field.startsWith("address.") && userInfo.has_address) {
       const type = field.split(".")[1] as keyof NonNullable<User["address"]>
@@ -183,13 +183,6 @@ export default function UserInfo() {
         ) : (
           <div></div>
         )}
-
-        <CardFooter className="flex justify-between p-0">
-          <Button className="flex items-center gap-2 bg-red-600 hover:cursor-pointer hover:bg-red-800 text-white" variant="outline">
-            <LogOut className="h-4 w-4" />
-            Cerrar Sesión
-          </Button>
-        </CardFooter>
       </CardContent >
     </Card >
   )

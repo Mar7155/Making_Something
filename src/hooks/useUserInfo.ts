@@ -1,5 +1,6 @@
 import type { User } from "@/lib/types/user"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useSyncExternalStore } from "react"
+import { $userStore } from "@clerk/astro/client";
 
 type EditType = "user" | "address"
 
@@ -34,6 +35,11 @@ export default function useUserInfo() {
     const [userInfo, setUserInfo] = useState<User>({ ...userDefault })
     const [formData, setFormData] = useState<User>({ ...userDefault })
     const [originalData, setOriginalData] = useState<User>({ ...userDefault })
+
+    const user = useSyncExternalStore($userStore.listen, $userStore.get, $userStore.get)
+
+    console.log(user?.id);
+    
 
     useEffect(() => {
         setLoading(false)
