@@ -3,7 +3,7 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '
 import { Input } from '../ui/input'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card'
+import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { shippingSchema, type ShippingFormValues } from '@/lib/schemas/shipping-schema'
 import { Button } from '../ui/button'
 
