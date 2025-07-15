@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
@@ -7,21 +7,21 @@ import { Check, Loader2, LogOut, Pencil, X } from "lucide-react"
 import Avvvatars from 'avvvatars-react'
 import type { User } from "@/lib/types/user"
 import { Switch } from "../ui/switch"
+import { SignOutButton } from "@clerk/astro/react"
 import useUserInfo from "@/hooks/useUserInfo"
-import { SignOutButton } from "@clerk/astro/components"
 
 export default function UserInfo() {
 
-  const { userInfo, loading, isEditingUser, isEditingAddress, formData, viewAddress, handleChange, startEditing, cancelEditing, saveChanges, deleteAddress, toggleaddressVisibility, AddAddress } = useUserInfo()
+  const { userInfo, loading } = useUserInfo();
 
   const renderField = (field: string, label: string, type = "text", isNumeric = false) => {
-  
+
     let value: any
     if (field.startsWith("address.") && userInfo.has_address) {
       const type = field.split(".")[1] as keyof NonNullable<User["address"]>
-      value = formData.address?.[type]
+      value = userInfo.address?.[type]
     } else {
-      value = formData[field as keyof User]
+      value = userInfo[field as keyof User]
     }
 
     if (field.startsWith("address.")) {
@@ -33,11 +33,6 @@ export default function UserInfo() {
             name={field}
             type={type}
             value={value !== undefined ? (isNumeric ? Number(value) : String(value)) : ""}
-            onChange={(e) =>
-              handleChange(field, isNumeric ? (e.target.value ? Number.parseInt(e.target.value) : 0) : e.target.value)
-            }
-            readOnly={!isEditingAddress}
-            className={isEditingAddress ? "border-primary" : ""}
           />
         </div>
       )
@@ -50,11 +45,7 @@ export default function UserInfo() {
           name={field}
           type={type}
           value={value !== undefined ? (isNumeric ? Number(value) : String(value)) : ""}
-          onChange={(e) =>
-            handleChange(field, isNumeric ? (e.target.value ? Number.parseInt(e.target.value) : 0) : e.target.value)
-          }
-          readOnly={!isEditingUser}
-          className={isEditingUser ? "border-primary" : ""}
+          readOnly
         />
       </div>
     )
@@ -68,7 +59,7 @@ export default function UserInfo() {
         ) : (
           <div>
             <Avvvatars
-              value={formData.name}
+              value={userInfo.username}
               size={50}
               style="shape"
             />
@@ -89,29 +80,8 @@ export default function UserInfo() {
           <div className="space-y-4">
             <h3 className="text-lg font-medium">Información Personal</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {renderField("name", "Nombre")}
-              {renderField("lastname", "Apellidos")}
-              {renderField("email", "Correo Electrónico", "email")}
-              {renderField("phone", "Teléfono", "tel")}
-            </div>
-            <div className="flex justify-end">
-              {!isEditingUser ? (
-                <Button onClick={() => startEditing("user")} className="flex items-center gap-2 bg-cyan-600 hover:cursor-pointer hover:bg-cyan-800">
-                  <Pencil className="h-4 w-4" />
-                  Editar
-                </Button>
-              ) : (
-                <div className="flex gap-2">
-                  <Button onClick={() => saveChanges("user")} className="flex items-center gap-2 bg-green-600 hover:cursor-pointer hover:bg-green-800" variant="default">
-                    <Check className="h-4 w-4" />
-                    Guardar
-                  </Button>
-                  <Button onClick={() => cancelEditing("user")} className="flex items-center gap-2 bg-red-600 hover:cursor-pointer hover:bg-red-800 text-white" variant="outline">
-                    <X className="h-4 w-4" />
-                    Cancelar
-                  </Button>
-                </div>
-              )}
+              {renderField("username", "Username")}
+              {renderField("email", "Email", "email")}
             </div>
           </div>
         )}
@@ -121,12 +91,14 @@ export default function UserInfo() {
           <Switch
             className="hover:cursor-pointer"
             id="direction-toggle"
-            onCheckedChange={toggleaddressVisibility}
+            //onCheckedChange={toggleaddressVisibility}
+            value="false"
+            disabled
           />
           <Label htmlFor="direction-toggle">Mostrar información de dirección</Label>
         </div>
 
-        {viewAddress && userInfo.has_address ? (
+        {/*viewAddress && userInfo.has_address ? (
           <div className="space-y-4 transition-all duration-200">
             <h3 className="text-lg font-medium">Dirección</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -182,8 +154,16 @@ export default function UserInfo() {
           </div>
         ) : (
           <div></div>
-        )}
+        )*/}
       </CardContent >
+      <CardFooter className="flex justify-end">
+        <SignOutButton>
+          <Button variant="destructive">
+            <LogOut className="h-4 w-4" />
+            Cerrar Sesión
+          </Button>
+        </SignOutButton>
+      </CardFooter>
     </Card >
   )
 }

@@ -1,0 +1,17 @@
+---
+import CartProducts from "@/components/sections/CartProducts.astro"
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout>
+    <section class="min-h-screen flex flex-col items-center px-4">
+        <div class="text-center my-10">
+            <h1 class="text-3xl font-extrabold">Personaliza tu pedido de pines</h1>
+            <p class="font-medium text-gray-800">Sube las imagenes que serán usadas para la creacion de tus pines ^^</p>
+            <p class="font-medium text-gray-800">Establece la cantidad de pines para cada imagen</p>
+        </div>
+        <div class="w-full max-w-2xl mt-10">
+            <CartProducts />
+        </div>
+    </section>  
+</Layout>

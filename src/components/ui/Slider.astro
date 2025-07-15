@@ -1,27 +1,10 @@
 ---
 import PreviewCard from "./preview-card.astro";
 import { getCollection } from "astro:content";
-
+import 'swiper/css';
 const products = await getCollection("products");
 ---
 
-<link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-/>
-<script
-    is:inline
-    src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-<script is:inline type="module">
-    import Swiper from "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js";
-
-    const swiper = new Swiper(".swiper", {
-        loop: true,
-        autoplay: {
-            delay: 5000
-        }
-    });
-</script>
 
 <div class="swiper">
     <div class="swiper-wrapper">

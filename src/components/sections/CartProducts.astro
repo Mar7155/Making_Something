@@ -1,0 +1,25 @@
+---
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "../ui/card";
+import { Separator } from "../ui/separator";
+import Counter from "../ui/product-counter";
+---
+
+<article>
+    <Card>
+        <CardHeader className="text-2xl font-bold text-center">
+            <CardTitle> Titulo del producto </CardTitle>
+        </CardHeader>
+        <Separator />
+        <CardContent>
+            <Counter client:idle />
+        </CardContent>
+        <Separator />
+        <CardFooter />
+    </Card>
+</article>

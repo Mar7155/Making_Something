@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ShippingForm from "@/components/forms/shipping-form";
+import CardOrder from '@/components/ui/card-order';
+---
+
+<Layout>
+    <section class="container min-h-screen mx-auto px-4 py-8 flex flex-col">
+        <div class="flex flex-col justify-center items-center pb-8">
+            <h1 class="text-2xl font-bold mb-8 text-center">Checkout</h1>
+            <p>Al confirmar tu pedido podrás ver toda la información en la sección <span class="font-bold">Tus Pedidos</span> en la pagina <a class="underline" href="/Profile">Profile</a></p>
+            <p>Tambien podrás ponerte en contacto para personalizar el pedido, enviar datos de envio y realizar el pago ^^</p>
+        </div>
+        <div class="w-full">
+            <div class="flex justify-center items-center">
+                <!---<ShippingForm client:idle /> -->
+                <CardOrder client:load />
+            </div>
+        </div>
+    </section>
+</Layout>

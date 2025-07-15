@@ -1,9 +1,8 @@
-import { useActivitiesFilesContext } from "@/contexts/ActivitiesFilesContext";
+import { CartProvider } from "@/contexts/cartContext";
 import { useState } from "react";
 
-const FileUploadForm = () => {
+const ImageUploadForm = () => {
 
-    const { addFile } = useActivitiesFilesContext()
     const [ file, setFile ] = useState<File>()
 
     const handleFile = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,12 +17,12 @@ const FileUploadForm = () => {
             alert("No hay archivo seleccionado");
             return;
         }
-        addFile(file);
     }
 
     return (
         <div>
             <form className="flex flex-col items-center justify-center w-full gap-4">
+                
                 <label
                     htmlFor="fileInput"
                     className="flex flex-col items-center justify-center w-full"
@@ -46,4 +45,4 @@ const FileUploadForm = () => {
     )
 }
 
-export default FileUploadForm;
+export default ImageUploadForm;

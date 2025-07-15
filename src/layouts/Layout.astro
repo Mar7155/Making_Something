@@ -2,7 +2,16 @@
 import "../styles/global.css";
 import Footer from "@/components/sections/Footer.astro";
 import { ClientRouter } from "astro:transitions";
+import Header from "@/components/sections/Header.astro";
 import Sidebar from "@/components/sections/Sidebar.astro";
+import Cart from "@/components/ui/cart";
+import { Toaster } from "@/components/ui/sonner";
+
+interface Props {
+	isHome?: boolean;
+}
+
+const { isHome = false } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -12,16 +21,22 @@ import Sidebar from "@/components/sections/Sidebar.astro";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Making Something</title>
-		<link
-            rel="stylesheet"
-            href="https://unpkg.com/swiper/swiper-bundle.min.css"
-        />
 		<ClientRouter />
 	</head>
-	<body class="bg-primary dark:bg-gray-900" id="body">
-		<Sidebar />	
-			<slot />		
+	<body class="bg-primary dark:bg-gray-900">
+		<Header />
+		<Sidebar isHome={isHome}/>
+        <Cart client:only/>	
+			<main class="flex flex-col">
+				<slot />		
+			</main>
 		<Footer />
+		<div
+			id="sidebar-overlay"
+			class="fixed inset-0 bg-black bg-opacity-50 z-10 opacity-0 invisible transition-all duration-300 ease-in-out"
+			>
+		</div>
+		<Toaster client:idle/>
 	</body>
 </html>
 
@@ -37,3 +52,26 @@ import Sidebar from "@/components/sections/Sidebar.astro";
 		overflow-x: hidden;
 	}
 </style>
+
+<script src="/scripts/sidebar-functions.js" is:inline></script>
+
+<script>
+    import Swiper from 'swiper';
+    const initSwiper = () => {
+    const container = document.querySelector('.swiper');
+    if (container && !container.classList.contains('swiper-initialized')) {
+      new Swiper('.swiper', {
+        loop: true,
+        autoplay: {
+          delay: 5000,
+        },
+      });
+    }
+  };
+
+  document.addEventListener('astro:after-swap', () => {
+    initSwiper();
+  });
+
+  initSwiper();
+</script>

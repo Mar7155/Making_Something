@@ -9,15 +9,15 @@ import { RefreshCw } from "@lucide/astro";
 import Badge from "@/components/ui/badge.astro";
 ---
 
-<Layout>
+<Layout isHome={true}>
         <section
             id="home"
-            class="h-full flex justify-center items-center flex-col lg:flex-row px-4 xl:px-40 gap-10 md:gap-0"
+            class="min-h-screen pb-40 flex justify-center items-center flex-col lg:flex-row px-4 xl:px-40 gap-10 md:gap-0"
         >
             <div
                 class="flex flex-col gap-6 justify-start items-start md:w-5/6 lg:w-2/3"
             >
-                <p class="font-medium text-gray-500">
+                <p class="font-medium text-gray-800">
                     Hola, bienvenido a <span class="font-bold"
                         >Making Something</span
                     > ^^
@@ -25,7 +25,7 @@ import Badge from "@/components/ui/badge.astro";
                 <h1 class="font-extrabold text-7xl">
                     If you can imagine you can make it! 😼
                 </h1>
-                <p class="font-medium text-gray-600">
+                <p class="font-medium text-gray-800">
                     Explora nuestra selección de productos más vendidos,
                     sumérgete en nuestro blog y acompáñanos en cada paso de
                     nuestro camino.
@@ -41,25 +41,25 @@ import Badge from "@/components/ui/badge.astro";
 
         <section
             id="products"
-            class="py-20 min-h-screen px-4 md:px-80 flex justify-between items-center flex-col xl:flex-row gap-10 md:gap-0"
+            class="min-h-screen px-4 flex justify-center items-center flex-col gap-10 md:gap-0 lg:flex-row"
         >
             <div
-                class="flex flex-col gap-6 justify-center items-start lg:w-3/6 "
+                class="flex flex-col gap-6 justify-center items-start lg:pl-40 xl:pl-80 lg:pr-10"
             >
-                <p class="font-medium text-gray-500">
+                <p class="font-medium text-gray-800">
                     Explora nuestra selección de productos más vendidos
                 </p>
                 <h2 class="font-extrabold text-5xl">
                     ¡Sumérgete en nuestro catálogo! 🛍️
                 </h2>
-                <p class="font-medium text-gray-600">
+                <p class="font-medium text-gray-800">
                     Descubre los productos más vendidos de la temporada,
                     encuentra el regalo perfecto para esa persona especial o
                     simplemente date un gusto a ti mismo.
                 </p>
                 <SecondaryButton href="/" text="Ver más" color="bg-green-400" />
             </div>
-            <div class="lg:w-1/3 w-full md:flex py-10">
+            <div class="w-full flex justify-center items-center lg:w-1/2">
                 <Slider />
             </div>
         </section>
@@ -123,7 +123,7 @@ import Badge from "@/components/ui/badge.astro";
                 <h2 class="font-extrabold text-5xl text-center">
                     ¿Tienes una idea en mente? 💡
                 </h2>
-                <p class="font-medium text-gray-600 text-center">
+                <p class="font-medium text-gray-800 text-center">
                     Ya sea que necesite un diseño personalizado, un servicio de
                     impresión 3D o tenga preguntas sobre nuestros juguetes,
                     mandanos mensaje a nuestras redes sociales y te responderemos enseguida.

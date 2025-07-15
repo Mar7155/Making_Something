@@ -1,31 +1,113 @@
-import type { User } from "@/lib/types/user"
-import { useEffect, useState, useSyncExternalStore } from "react"
 import { $userStore } from "@clerk/astro/client";
+import type { ShippingAddress, User } from "@/lib/types/user"
+import { useEffect, useState, useSyncExternalStore } from "react"
+import type { Product } from "@/lib/types/product";
+import type { Order } from "@/lib/types/order";
+import type { Cart } from "@/lib/types/cart";
 
 type EditType = "user" | "address"
+
+const products_sample: Product[] = [
+    {
+        id: "1",
+        name: "Pin 5.6cm",
+        price: 250.00,
+        quantity: 10,
+        product_id: "1",
+        unit_price: 25.00,
+        product_image_preview: "/images/pin-frontal-5.6cm.webp"
+    },
+    {
+        id: "2",
+        name: "Pin 3.2cm",
+        price: 150.00,
+        quantity: 10,
+        product_id: "2",
+        unit_price: 15.00,
+        product_image_preview: "/images/pin-frontal-3.2cm.webp"
+    },
+    {
+        id: "1",
+        name: "Pin 5.6cm magnetico destapador",
+        price: 400.00,
+        quantity: 10,
+        product_id: "3",
+        unit_price: 40.00,
+        product_image_preview: "/images/pin-frontal-5.6cm.webp"
+    }
+]
+
+const shipping_address: ShippingAddress[] = [
+    {
+        id: "1",
+        email: "john.doe@example.com",
+        full_name: "Jhon Doe",
+        phone: "+1 1234567890",
+        street: "av. independiente",
+        no_ext: "999",
+        no_int: "999",
+        district: "poniente",
+        zip_code: 99999,
+        city: "Tulancingo",
+        state: "Hidalgo",
+    },
+    {
+        id: "2",
+        email: "christine.doe@example.com",
+        full_name: "Christine Doe",
+        phone: "+1 1234527180",
+        street: "blv. san cristobal",
+        no_ext: "999",
+        no_int: "999",
+        district: "centro",
+        zip_code: 99999,
+        city: "mexicali",
+        state: "Baja California",
+    }
+]
+
+const carts_sample: Cart[] = [
+    {
+        id: "1",
+        user_id: "1",
+        products: [products_sample[1], products_sample[2]],
+        subTotal: 400,
+        tax: 0,
+        total: 400,
+    }
+]
+
+const orders_sample: Order[] = [
+    {
+        id: "ORD-2024-001",
+        cart: carts_sample[0],
+        total: carts_sample[0].total || 0,
+        payment_method: "credit_card",
+        shipping_address: shipping_address[1],
+        status: "pending",
+        created_at: "2024-01-15T10:30:00Z",
+        updated_at: "2024-02-15T10:30:00Z",
+    }
+]
 
 const userDefault: User = {
     id: crypto.randomUUID(),
     clerk_id: crypto.randomUUID(),
-    name: "John",
-    lastname: "Doe",
+    username: "John",
     email: "john.doe@example.com",
-    phone: "1234567890",
     has_address: false,
-    address: {
-        street: "",
-        no_ext: 999,
-        no_int: 999,
-        cologne: "",
-        zip_code: 99999,
-        city: "",
-        state: "",
-    },
+    address: [
+        shipping_address[0]
+    ],
+    orders: [
+        orders_sample[0]
+    ],
     stripe_customer_id: crypto.randomUUID(),
 }
 
 export default function useUserInfo() {
 
+    const clerkUser = useSyncExternalStore($userStore.listen, $userStore.get, $userStore.get)
 
     const [loading, setLoading] = useState(true)
     const [isEditingUser, setIsEditingUser] = useState(false)
@@ -36,13 +118,29 @@ export default function useUserInfo() {
     const [formData, setFormData] = useState<User>({ ...userDefault })
     const [originalData, setOriginalData] = useState<User>({ ...userDefault })
 
-    const user = useSyncExternalStore($userStore.listen, $userStore.get, $userStore.get)
-
-    console.log(user?.id);
-    
 
     useEffect(() => {
-        setLoading(false)
+        const fetchUserInfo = async () => {
+            const user: User = {
+                id: crypto.randomUUID(),
+                clerk_id: clerkUser?.id || crypto.randomUUID(),
+                username: clerkUser?.username || "",
+                email: clerkUser?.emailAddresses[0]?.emailAddress || "",
+                has_address: false,
+                stripe_customer_id: "",
+                address: [
+                    shipping_address[0]
+                ]
+            }
+            
+            if (user) {
+                setUserInfo(user)
+                setFormData(user)
+                setOriginalData(user)
+            }
+            setLoading(false)
+        }
+        fetchUserInfo()
     }, [])
 
     const saveChanges = (type: EditType) => {
@@ -63,20 +161,7 @@ export default function useUserInfo() {
     const handleChange = (field: string, value: string | number | boolean) => {
         if (field.startsWith("address.")) {
             const addressField = field.split(".")[1] as keyof NonNullable<User["address"]>
-            setFormData((prev) => ({
-                ...prev,
-                address: {
-                    ...prev.address,
-                    street: prev.address?.street ?? "",
-                    no_ext: prev.address?.no_ext ?? 0,
-                    no_int: prev.address?.no_int ?? 0,
-                    cologne: prev.address?.cologne ?? "",
-                    zip_code: prev.address?.zip_code ?? 0,
-                    city: prev.address?.city ?? "",
-                    state: prev.address?.state ?? "",
-                    [addressField]: value
-                }
-            }))
+
         } else {
             setFormData((prev) => ({
                 ...prev,
@@ -107,19 +192,6 @@ export default function useUserInfo() {
 
     const AddAddress = () => {
         setUserInfo({ ...userInfo, has_address: true })
-        setFormData((prev) => ({
-            ...prev,
-            has_address: true,
-            address: {
-                street: "",
-                no_ext: 0,
-                no_int: 0,
-                cologne: "",
-                zip_code: 0,
-                city: "",
-                state: "",
-            }
-        }))
         setIsEditingAddress(true)
     }
 
@@ -127,26 +199,20 @@ export default function useUserInfo() {
         setUserInfo({
             ...userInfo,
             has_address: false,
-            address: {}
         })
-
-        setFormData((prev) => ({
-            ...prev,
-            has_address: false,
-            address: {
-                street: "",
-                no_ext: 0,
-                no_int: 0,
-                cologne: "",
-                zip_code: 0,
-                city: "",
-                state: "",
-            }
-        }))
     }
 
     const toggleaddressVisibility = () => {
         setViewAddress(!viewAddress)
+    }
+
+    const getOrders = () => {
+        if (userInfo.orders && userInfo.orders.length > 0) {
+            return userInfo.orders;
+        }
+        else {
+            return []
+        }
     }
 
     return {
@@ -165,5 +231,6 @@ export default function useUserInfo() {
         AddAddress,
         deleteAddress,
         toggleaddressVisibility,
+        getOrders,
     }
 }

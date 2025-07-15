@@ -1,0 +1,37 @@
+---
+import { SignedIn } from '@clerk/astro/components';
+import Button from '../ui/buttons/PrimaryButton.astro';
+
+interface Props {
+    links: Array<{
+        label: string;
+        href: string;
+        color: string;
+    }>;
+}
+
+const { links } = Astro.props;
+---
+
+<nav>
+    <ul class="flex flex-col w-full h-full items-center pt-20 gap-12">
+        {
+            links.map((link) => {
+                return (
+                    <li>
+                        <Button
+                            href={link.href}
+                            text={link.label}
+                            color={link.color}
+                        />
+                    </li>
+                );
+            })
+        }
+        <SignedIn server:defer>
+            <li>
+                <Button href="/Profile" text="Perfil" color="200,0,255,0.8" />
+            </li>
+        </SignedIn>
+    </ul>
+</nav>
