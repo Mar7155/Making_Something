@@ -66,8 +66,6 @@ export function addProduct(id: any) {
         updateSubTotal();
         updateTotal();
         $quantity.set(0);
-
-        console.log($cart.get());
         
         toast.success('Producto agregado al carrito', {
             duration: 3000,

@@ -84,7 +84,7 @@ const carts_sample: Cart[] = [
         id: "1",
         user_id: "1",
         products: [products_sample[1], products_sample[2]],
-        subTotal: 400,
+        sub_total: 400,
         tax: 0,
         total: 400,
     },
@@ -136,7 +136,6 @@ export function useUserData() {
 
 export function getOrders(): Order[] {
     const userInfo = $user.get();
-    console.log(userInfo.orders);
 
     return userInfo.orders ?? [];
 }
@@ -151,6 +150,4 @@ export function addOrder(order: Order) {
         ...currentUser,
         orders: updatedOrders,
     });
-    console.log($user.get().orders);
-
 }
