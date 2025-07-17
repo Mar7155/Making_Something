@@ -1,4 +1,3 @@
-import { CartProvider } from "@/contexts/cartContext";
 import { useState } from "react";
 
 const ImageUploadForm = () => {

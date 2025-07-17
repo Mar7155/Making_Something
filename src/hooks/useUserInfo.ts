@@ -71,7 +71,7 @@ const carts_sample: Cart[] = [
         id: "1",
         user_id: "1",
         products: [products_sample[1], products_sample[2]],
-        subTotal: 400,
+        sub_total: 400,
         tax: 0,
         total: 400,
     }

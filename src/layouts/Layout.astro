@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import Footer from "@/components/sections/Footer.astro";
-import { ClientRouter } from "astro:transitions";
+import { ClientRouter, slide } from "astro:transitions";
 import Header from "@/components/sections/Header.astro";
 import Sidebar from "@/components/sections/Sidebar.astro";
 import Cart from "@/components/ui/cart";
@@ -14,7 +14,7 @@ interface Props {
 const { isHome = false } = Astro.props;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="none">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,7 +27,7 @@ const { isHome = false } = Astro.props;
 		<Header />
 		<Sidebar isHome={isHome}/>
         <Cart client:only/>	
-			<main class="flex flex-col">
+			<main transition:animate={slide({ duration: '0.5s' })}  class="flex flex-col">
 				<slot />		
 			</main>
 		<Footer />

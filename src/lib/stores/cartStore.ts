@@ -66,11 +66,7 @@ export function addProduct(id: any) {
         updateSubTotal();
         updateTotal();
         $quantity.set(0);
-        
-        toast.success('Producto agregado al carrito', {
-            duration: 3000,
-            position: 'bottom-right',
-        });
+        succesToast("Producto agregado al carrito", 3000)
     }
 }
 
@@ -103,10 +99,7 @@ export function deleteProduct(productId: string) {
     updateSubTotal();
     updateTotal();
 
-    toast.success('Producto eliminado del carrito', {
-        duration: 3000,
-        position: 'bottom-right',
-    });
+    succesToast("Producto eliminado del carrito", 3000)
 }
 
 export function getCartInLocalStorage() {
@@ -140,11 +133,8 @@ export function createOrder() {
         created_at: currentDate.toLocaleDateString(),
         updated_at: currentDate.toLocaleDateString(),
     }
+    succesToast("Pedido creado exitosamente, visita tu perfil para más detalles", 3000)
     addOrder(order);
-    toast.success("Pedido creado exitosamente, visita tu perfil para más detalles", {
-        duration: 3000,
-        position: 'bottom-right'
-    })
 }
 
 function updateTotal() {
@@ -216,4 +206,13 @@ function createDiscount(quantity: number, unit_price: number) {
         default:
             return 0
     }
+}
+
+function succesToast(message:string, duration:number) {
+    console.log("function succesToast");
+    
+    toast.success(message, {
+        duration: duration,
+        position: 'bottom-right',
+    })
 }
