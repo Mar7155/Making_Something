@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/componen
 import { $cart, getCartInLocalStorage } from '@/lib/stores/cartStore'
 import { useStore } from '@nanostores/react'
 import { useEffect } from 'react'
-import CardItem from './card-item'
+import CardItem from '@/components/ui/card-item'
 
 const cart = () => {
 
