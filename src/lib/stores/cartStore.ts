@@ -2,7 +2,7 @@ import { atom } from 'nanostores';
 import type { Cart } from '../types/cart';
 import type { Product } from '../types/product';
 import productsList from "@/content/products/products.json";
-import { toast } from 'sonner';
+import { succesToast, errorToast } from "@/components/ui/sonner";
 import type { Order } from '../types/order';
 import type { ShippingAddress } from '../types/user';
 import { addOrder } from './userStore';
@@ -32,10 +32,7 @@ export function addProduct(id: any) {
     const quantity = $quantity.get()
 
     if (quantity <= 0) {
-        toast.error("Debes seleccionar una cantidad mayor a 0", {
-            duration: 2000,
-            position: 'bottom-right',
-        });
+        errorToast("Debes seleccionar una cantidad mayor a 0", 3000)
         return;
     }
 
@@ -206,13 +203,4 @@ function createDiscount(quantity: number, unit_price: number) {
         default:
             return 0
     }
-}
-
-function succesToast(message:string, duration:number) {
-    console.log("function succesToast");
-    
-    toast.success(message, {
-        duration: duration,
-        position: 'bottom-right',
-    })
 }

@@ -1,6 +1,5 @@
 import { useTheme } from "next-themes"
-import { Toaster as Sonner } from "sonner"
-import type { ToasterProps } from "sonner"
+import { Toaster as Sonner, toast, type ToasterProps } from "sonner"
 
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()
@@ -21,4 +20,22 @@ const Toaster = ({ ...props }: ToasterProps) => {
   )
 }
 
-export { Toaster }
+function succesToast(message:string, duration:number) {
+    console.log("function succesToast");
+    
+    toast.success(message, {
+        duration: duration,
+        position: 'bottom-right',
+    })
+}
+
+function errorToast(message:string, duration:number) {
+    console.log("function succesToast");
+    
+    toast.error(message, {
+        duration: duration,
+        position: 'bottom-right',
+    })
+}
+
+export { Toaster, succesToast, errorToast }

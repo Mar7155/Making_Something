@@ -5,7 +5,7 @@ import { ClientRouter, slide } from "astro:transitions";
 import Header from "@/components/sections/Header.astro";
 import Sidebar from "@/components/sections/Sidebar.astro";
 import Cart from "@/components/ui/cart";
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 
 interface Props {
 	isHome?: boolean;
@@ -36,7 +36,7 @@ const { isHome = false } = Astro.props;
 			class="fixed inset-0 bg-black bg-opacity-50 z-10 opacity-0 invisible transition-all duration-300 ease-in-out"
 			>
 		</div>
-		<Toaster client:idle/>
+		<Sonner client:load />
 	</body>
 </html>
 
