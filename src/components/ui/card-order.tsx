@@ -1,6 +1,6 @@
 import { useStore } from '@nanostores/react'
 import { $cart, createOrder } from '@/lib/stores/cartStore'
-import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from './card'
+import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from './custom-card'
 import CardItem from './card-item'
 import { Button } from './button'
 import { useEffect, useState } from 'react'

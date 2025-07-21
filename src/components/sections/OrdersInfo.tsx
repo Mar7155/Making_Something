@@ -1,7 +1,7 @@
 import type { Order } from "@/lib/types/order";
 import { CalendarDays, MapPin, Truck, Package, ShoppingBag, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardAction, CardContent, CardFooter, CardHeader } from "../ui/card";
+import { Card, CardAction, CardContent, CardFooter, CardHeader } from "../ui/custom-card";
 import { getOrders } from "@/lib/stores/userStore";
 import useUserInfo from "@/hooks/useUserInfo";
 import { Button } from "../ui/button";

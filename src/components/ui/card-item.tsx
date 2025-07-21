@@ -1,5 +1,5 @@
 import type { Product } from '@/lib/types/product'
-import { Card } from './card'
+import { Card } from './custom-card'
 import { Button } from './button'
 import { Minus, Plus, Trash2 } from 'lucide-react'
 import { Input } from './input'
