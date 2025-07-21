@@ -26,7 +26,7 @@ const { isHome = false } = Astro.props;
 	<body class="bg-primary dark:bg-gray-900">
 		<Header />
 		<Sidebar isHome={isHome}/>
-        <Cart client:only/>	
+        <Cart client:load/>	
 			<main transition:animate={slide({ duration: '0.5s' })}  class="flex flex-col">
 				<slot />		
 			</main>
