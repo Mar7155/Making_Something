@@ -1,5 +1,5 @@
 import { ShoppingCart, X } from 'lucide-react'
-import { Button } from './button'
+import { Button } from '@/components/ui/button'
 import { Separator } from '@radix-ui/react-select'
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card'
 import { $cart, getCartInLocalStorage } from '@/lib/stores/cartStore'
