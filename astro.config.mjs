@@ -6,21 +6,14 @@ import react from '@astrojs/react';
 import clerk from '@clerk/astro';
 import { esES } from "@clerk/localizations";
 
-import node from "@astrojs/node"
-
 import tailwindcss from '@tailwindcss/vite';
+
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss(), react()],
-    build: {
-      rollupOptions: {
-        external: [
-          "@/components/ui/card"
-        ],
-      },
-    }
   },
 
   env:{
@@ -32,9 +25,7 @@ export default defineConfig({
   },
 
   output: 'server',
-  adapter: node({
-    mode: 'standalone'
-  }),
+  adapter: cloudflare({imageService:'compile'}),
   integrations: [react(), clerk({
     localization: esES,
   })]

@@ -1,10 +1,11 @@
 ---
 import Badge from "@/components/ui/badge.astro";
+import FetchUserButton from "@/components/ui/buttons/fetchUserButton";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout>
-    <section class="h-full flex justify-center items-center">
-        <Badge text="Proximamente"></Badge>
+    <section class="min-h-full flex justify-center items-center">
+        <FetchUserButton client:idle/>
     </section>
 </Layout>
