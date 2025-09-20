@@ -29,9 +29,7 @@ export default defineConfig({
     allowedHosts: ['.ngrok-free.app']
   },
   output: 'server',
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: cloudflare(),
   integrations: [react(), clerk({
     localization: esES,
   })]
