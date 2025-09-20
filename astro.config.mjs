@@ -15,6 +15,9 @@ import node from "@astrojs/node"
 export default defineConfig({
   vite: {
     plugins: [tailwindcss(), react()],
+    ssr: {
+      external: ['@prisma/client', '.prisma/client'],
+    },
   },
 
   env:{
