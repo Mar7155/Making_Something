@@ -1,10 +1,9 @@
 import type { Order } from "@/lib/types/order";
-import { CalendarDays, MapPin, Truck, Package, ShoppingBag, User } from "lucide-react";
+import { CalendarDays, MapPin, Truck, Package, ShoppingBag, User, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardAction, CardContent, CardFooter, CardHeader } from "../ui/custom-card";
-import { getOrders } from "@/lib/stores/userStore";
-import useUserInfo from "@/hooks/useUserInfo";
 import { Button } from "../ui/button";
+import { useOrderInfo } from "@/hooks/useOrderInfo";
 
 const getPaymentMethodText = (method?: Order["payment_method"]) => {
     switch (method) {
@@ -36,14 +35,14 @@ const getOrderStatus = (status: Order["status"]) => {
 
 function OrdersInfo() {
 
-    const { loading } = useUserInfo();
-
-    const userOrders: Order[] = getOrders()
+    const { userOrders, loadingOrders } = useOrderInfo();
 
     return (
         <>
-            {
-                userOrders.length > 0 && !loading ? (
+            {loadingOrders ? (
+                <Loader2 className="animate-spin" />
+            ) :
+                userOrders.length > 0 ? (
                     <ul className="space-y-4">
                         {userOrders.map((order) => (
                             <li key={order.id}>
@@ -70,7 +69,7 @@ function OrdersInfo() {
                                             <div className="text-right">
                                                 <p className="text-2xl font-bold">
                                                     {" "}
-                                                    ${order.total?.toFixed(2)}{" "}
+                                                    ${order.total}
                                                 </p>
                                                 <p className="text-sm text-muted-foreground">
                                                     {" "}{getPaymentMethodText(order.payment_method)}{" "}
@@ -144,10 +143,10 @@ function OrdersInfo() {
                                                 <h4 className="font-medium text-sm text-muted-foreground mb-3 flex items-center gap-1">
                                                     <Package className="h-3 w-3" />
                                                     PRODUCTOS (
-                                                    {order.cart?.products?.length})
+                                                    {order.orderItems?.length})
                                                 </h4>
                                                 <div className="space-y-2">
-                                                    {order.cart?.products?.map(
+                                                    {order.orderItems?.map(
                                                         (item) => (
                                                             <div key={item.id} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-lg">
                                                                 <div className="grid grid-cols-2 gap-2">
@@ -167,23 +166,12 @@ function OrdersInfo() {
                                                                     <p className="font-medium text-sm">
                                                                         $
                                                                         {(
-                                                                            (item.unit_price !==
-                                                                                undefined
-                                                                                ? item.unit_price
-                                                                                : item.price !==
-                                                                                    undefined
-                                                                                    ? item.price
-                                                                                    : 0) *
-                                                                            item.quantity
-                                                                        ).toFixed(
-                                                                            2,
+                                                                            item.price
                                                                         )}
                                                                     </p>
                                                                     <p className="text-xs text-muted-foreground">
                                                                         $
-                                                                        {item.unit_price?.toFixed(
-                                                                            2,
-                                                                        )}{" "}
+                                                                        {item.unitPrice}{" "}
                                                                         c/u
                                                                     </p>
                                                                 </div>

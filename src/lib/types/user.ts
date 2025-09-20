@@ -12,17 +12,28 @@ export interface Address {
 
 export interface User {
   id?: string         // UUID local
-  clerk_id: string   // ID de Clerk
-  username: string;
-  email: string
-  has_address: boolean
+  clerk_id?: string   // ID de Clerk
+  username?: string;
+  email?: string
+  has_address?: boolean
   stripe_customer_id?: string // ID de Stripe 
   address?: ShippingAddress[]
   orders?: Order[]
 }
 
+export interface UserResponse {
+  user: {
+    id?: string,
+    username?: string,
+    email?: string,
+    has_address?: boolean,
+    shippingAddresses?: ShippingAddress[],
+    orders?: Order[]
+  }
+}
+
 export interface ShippingAddress extends Address {
-  id?:string
+  id?: string
   full_name?: string
   email?: string
   phone?: string

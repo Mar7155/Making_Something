@@ -9,6 +9,8 @@ export interface Order {
     cart?: Cart;
     shipping_address?: ShippingAddress;
     total?: number;
+    subtotal?: number;
+    discount?: number;
     status?: Status_Type;
     created_at?: string;
     updated_at?: string;

@@ -20,18 +20,14 @@ const Toaster = ({ ...props }: ToasterProps) => {
   )
 }
 
-function succesToast(message:string, duration:number) {
-    console.log("function succesToast");
-    
+function succesToast(message:string, duration:number) {    
     toast.success(message, {
         duration: duration,
         position: 'bottom-right',
     })
 }
 
-function errorToast(message:string, duration:number) {
-    console.log("function succesToast");
-    
+function errorToast(message:string, duration:number) {    
     toast.error(message, {
         duration: duration,
         position: 'bottom-right',

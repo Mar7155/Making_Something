@@ -12,16 +12,16 @@ import useUserInfo from "@/hooks/useUserInfo"
 
 export default function UserInfo() {
 
-  const { userInfo, loading } = useUserInfo();
+  const { user, loadingUser } = useUserInfo()
 
   const renderField = (field: string, label: string, type = "text", isNumeric = false) => {
 
     let value: any
-    if (field.startsWith("address.") && userInfo.has_address) {
+    if (field.startsWith("address.") && user.has_address) {
       const type = field.split(".")[1] as keyof NonNullable<User["address"]>
-      value = userInfo.address?.[type]
+      value = user.address?.[type]
     } else {
-      value = userInfo[field as keyof User]
+      value = user[field as keyof User]
     }
 
     if (field.startsWith("address.")) {
@@ -54,12 +54,12 @@ export default function UserInfo() {
   return (
     <Card className="max-w-3xl mx-auto">
       <CardHeader className="flex flex-row items-center justify-start gap-0 pb-2">
-        {loading ? (
+        {loadingUser ? (
           <Loader2 className="animate-spin" />
         ) : (
           <div>
             <Avvvatars
-              value={userInfo.username}
+              value={user.username || "kitty"}
               size={50}
               style="shape"
             />
@@ -72,7 +72,7 @@ export default function UserInfo() {
       </CardHeader>
       <CardContent className="space-y-6 pt-4">
         {/* Información Personal */}
-        {loading ? (
+        {loadingUser ? (
           <div className="flex justify-center items-center">
             <Loader2 className="animate-spin"></Loader2>
           </div>
@@ -98,7 +98,7 @@ export default function UserInfo() {
           <Label htmlFor="direction-toggle">Mostrar información de dirección</Label>
         </div>
 
-        {/*viewAddress && userInfo.has_address ? (
+        {/*viewAddress && user.has_address ? (
           <div className="space-y-4 transition-all duration-200">
             <h3 className="text-lg font-medium">Dirección</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -139,7 +139,7 @@ export default function UserInfo() {
               )}
             </div>
           </div>
-        ) : !userInfo.has_address && viewAddress ? (
+        ) : !user.has_address && viewAddress ? (
           <div className="space-y-4 transition-all duration-200">
             <h3 className="text-lg font-medium">Dirección</h3>
             <div className="flex flex-col justify-center items-center gap-4">

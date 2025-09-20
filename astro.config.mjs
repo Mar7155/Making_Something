@@ -9,6 +9,7 @@ import { esES } from "@clerk/localizations";
 import tailwindcss from '@tailwindcss/vite';
 
 import cloudflare from "@astrojs/cloudflare";
+import node from "@astrojs/node"
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,12 +21,17 @@ export default defineConfig({
     schema:{
       API_URL: envField.string({context: "server", access: "secret", optional: true}),
       PUBLIC_CLERK_PUBLISHABLE_KEY: envField.string({context: "server", access: "secret", optional: true}),
-      CLERK_SECRET_KEY: envField.string({context: "server", access: "secret", optional: true})
+      CLERK_SECRET_KEY: envField.string({context: "server", access: "secret", optional: true}),
+      CLERK_WEBHOOK_SIGNING_SECRET: envField.string({context: "server", access: 'public'}),
     }
   },
-
+  server: {
+    allowedHosts: ['.ngrok-free.app']
+  },
   output: 'server',
-  adapter: cloudflare({imageService:'compile'}),
+  adapter: node({
+    mode: 'standalone',
+  }),
   integrations: [react(), clerk({
     localization: esES,
   })]

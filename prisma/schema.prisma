@@ -1,0 +1,149 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enums
+enum OrderStatus {
+  pending
+  completed
+  shipped
+  delivered
+  cancelled
+}
+
+enum ShipmentStatus {
+  pending
+  in_transit
+  delivered
+  returned
+}
+
+enum PaymentMethod {
+  card
+  paypal
+  cash
+  bank_transfer
+}
+
+model User {
+  id        String             @id @default(uuid()) @db.Uuid
+  clerkId   String             @default("id-default-change")
+  username  String             @unique
+  email     String             @unique
+  createdAt DateTime           @default(now()) @map("created_at")
+  updatedAt DateTime           @updatedAt @map("updated_at")
+
+  shippingAddresses ShippingAddress[]
+  orders            Order[]
+}
+
+model ShippingAddress {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @db.Uuid @map("user_id")
+  extNum    String    @map("ext_num")
+  intNum    String?   @map("int_num")
+  street    String
+  district  String
+  city      String
+  state     String
+  zipCode   String    @map("zip_code")
+  country   String    @default("Mexico")
+  isDefault Boolean   @default(false) @map("is_default")
+
+  user      User      @relation(fields: [userId], references: [id])
+  shipments Shipment[]
+
+  @@map("shipping_address")
+  @@index([userId])
+}
+
+model Product {
+  id              String     @id @default(uuid()) @db.Uuid
+  name            String     @db.VarChar(100)
+  description     String
+  price           Decimal    @db.Decimal(10, 2)
+  stock           Int
+  previewImageUrl String?    @map("preview_image_url")
+  active          Boolean    @default(true)
+  createdAt       DateTime   @default(now()) @map("created_at")
+  updatedAt       DateTime   @updatedAt @map("updated_at")
+
+  orderItems      OrderItem[]
+}
+
+model Shipment {
+  id           String           @id @default(uuid()) @db.Uuid
+  addressId    String?          @db.Uuid @map("address_id")
+  shipmentDate DateTime         @default(now()) @map("shipment_date")
+  deliveryDate DateTime?        @map("delivery_date")
+  status       ShipmentStatus   @default(pending)
+
+  address      ShippingAddress? @relation(fields: [addressId], references: [id])
+  orders       Order[]
+
+  @@map("shipment")
+  @@index([addressId])
+}
+
+model Order {
+  id         String       @id @default(uuid()) @db.Uuid
+  userId     String       @db.Uuid @map("user_id")
+  shipmentId String?      @db.Uuid @map("shipment_id")
+  subtotal   Decimal      @db.Decimal(10, 2)
+  discount   Decimal?     @db.Decimal(10, 2)
+  shipping   Decimal?     @db.Decimal(10, 2)
+  total      Decimal      @db.Decimal(10, 2)
+  status     OrderStatus  @default(pending)
+  createdAt  DateTime     @default(now()) @map("created_at")
+  updatedAt  DateTime     @updatedAt @map("updated_at")
+
+  user       User         @relation(fields: [userId], references: [id])
+  shipment   Shipment?    @relation(fields: [shipmentId], references: [id])
+  orderItems OrderItem[]
+  payments   Payment[]
+
+  @@map("order")
+  @@index([userId])
+  @@index([shipmentId])
+}
+
+model OrderItem {
+  id        String   @id @default(uuid()) @db.Uuid
+  orderId   String   @db.Uuid @map("order_id")
+  productId String   @db.Uuid @map("product_id")
+  quantity  Int
+  price     Decimal  @db.Decimal(10, 2) @default(1.00)
+  unitPrice Decimal  @db.Decimal(10, 2) @map("unit_price")
+  discount  Decimal? @db.Decimal(10, 2)
+
+  order     Order    @relation(fields: [orderId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+
+  @@map("order_item")
+  @@index([orderId])
+  @@index([productId])
+}
+
+model Payment {
+  id            String        @id @default(uuid()) @db.Uuid
+  orderId       String        @db.Uuid @map("order_id")
+  amount        Decimal       @db.Decimal(10, 2)
+  paymentDate   DateTime      @default(now()) @map("payment_date")
+  paymentMethod PaymentMethod @map("payment_method")
+
+  order         Order         @relation(fields: [orderId], references: [id])
+
+  @@map("payment")
+  @@index([orderId])
+}

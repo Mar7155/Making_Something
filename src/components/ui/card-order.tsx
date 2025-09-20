@@ -3,18 +3,12 @@ import { $cart, createOrder } from '@/lib/stores/cartStore'
 import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from './custom-card'
 import CardItem from './card-item'
 import { Button } from './button'
-import { useEffect, useState } from 'react'
+import useUserInfo from '@/hooks/useUserInfo'
 
 function CardOrder() {
     const cart = useStore($cart)
+    const { user } = useUserInfo()
     const cartItems = cart.products || []
-
-    const [isMounted, setIsMounted] = useState(false)
-    useEffect(() => {
-        setIsMounted(true)
-    }, [])
-
-    if (!isMounted) return null
 
     return (
         <Card className="bg-white shadow-md rounded-lg justify-around">
@@ -48,7 +42,14 @@ function CardOrder() {
                     </div>
                 </article>
                 <CardAction>
-                    <Button variant='primary' onClick={createOrder}>
+                    <Button
+                        variant='primary'
+                        onClick={() => {
+                            if (user?.id) {
+                                createOrder(user.id)
+                            }
+                        }}
+                    >
                         Confirmar Pedido
                     </Button>
                 </CardAction>

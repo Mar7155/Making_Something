@@ -5,7 +5,8 @@ import { actions } from 'astro:actions'
 function fetchUserButton() {
 
   function getUser() {
-    actions.userActions.getUsers()
+    const userId = "9af8a9c1-847e-4a8c-8b31-9752409e5517"
+    actions.orderActions.getUserOrders({ userId })
   }
 
   return (

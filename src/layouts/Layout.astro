@@ -2,7 +2,6 @@
 export const prerender = false
 import "../styles/global.css";
 import Footer from "@/components/sections/Footer.astro";
-import { ClientRouter, slide } from "astro:transitions";
 import Header from "@/components/sections/Header.astro";
 import Sidebar from "@/components/sections/Sidebar.astro";
 import Cart from "@/components/ui/cart";
@@ -22,13 +21,12 @@ const { isHome = false } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Making Something</title>
-		<ClientRouter />
 	</head>
 	<body class="bg-primary dark:bg-gray-900">
 		<Header />
 		<Sidebar isHome={isHome}/>
         <Cart client:load/>	
-			<main transition:animate={slide({ duration: '0.5s' })}  class="flex flex-col">
+			<main class="flex flex-col">
 				<slot />		
 			</main>
 		<Footer />

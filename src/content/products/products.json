@@ -2,7 +2,7 @@
     {
         "slug": "Pines 5.6cm",
         "data": {
-            "id": "1",
+            "id": "ab784c45-df4a-468d-880e-46dc82ccc1d5",
             "name": "Pin 5.6cm",
             "description": "Pin metalico personalizado redondo 5.6cm diametro",
             "price": 25.00,
@@ -17,7 +17,7 @@
     {
         "slug": "Pines 3.2cm",
         "data": {
-            "id": "2",
+            "id": "eea640d1-060a-465e-baba-324782f4b24a",
             "name": "Pin 3.2cm",
             "description": "Pin metalico personalizado redondo 3.2cm diametro",
             "price": 15.00,
@@ -31,7 +31,7 @@
     {
         "slug": "Pines magneticos destapadores",
         "data": {
-            "id": "3",
+            "id": "5f957182-4468-4743-9f25-ec001e5e0b48",
             "name": "Pin magnetico destapador",
             "description": "Pin metalico personalizado redondo magneticos con destapador de botella 5.6cm diametro",
             "price": 40.00,

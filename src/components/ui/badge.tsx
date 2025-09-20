@@ -21,6 +21,10 @@ const badgeVariants = cva(
           "text-green-800 bg-green-200",
         pending:
           "text-yellow-800 bg-yellow-200",
+        delievered:
+          "text-blue-800 bg-blue-200",
+        shipped: 
+          "text-purple-800 bg-purple-200",
         cancelled:
           "text-red-800 bg-red-200",
       },

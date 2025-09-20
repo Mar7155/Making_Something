@@ -5,7 +5,9 @@ import productsList from "@/content/products/products.json";
 import { succesToast, errorToast } from "@/components/ui/sonner";
 import type { Order } from '../types/order';
 import type { ShippingAddress } from '../types/user';
-import { addOrder } from './userStore';
+import { $user, addOrder } from './userStore';
+import { actions } from 'astro:actions';
+import { useStore } from '@nanostores/react';
 
 export const $quantity = atom(0);
 export const $cart = atom<Cart>({});
@@ -112,25 +114,31 @@ export function createShippingAddress(shippingAddress: ShippingAddress) {
     $shipping.set(shippingAddress)
 }
 
-export function createOrder() {
+export async function createOrder(userId: string) {
     const currentDate = new Date()
-    const formatedDate = currentDate.toLocaleDateString('es-MX')
-    const currentHours = currentDate.getHours()
-    const currentMinutes = currentDate.getMinutes()
-    const currentSeconds = currentDate.getSeconds()
-    const splitedDate = formatedDate.split("/")
-    const orderId = splitedDate[0] + splitedDate[1] + splitedDate[2] + currentHours + currentMinutes + currentSeconds
-
+    
     const order: Order = {
-        id: "ORD-" + orderId,
         cart: $cart.get(),
         total: $cart.get().total,
+        subtotal: $cart.get().sub_total,
+        discount: $cart.get().discount,
         status: 'pending',
         shipping_address: $shipping.get() || "",
         created_at: currentDate.toLocaleDateString(),
         updated_at: currentDate.toLocaleDateString(),
     }
-    succesToast("Pedido creado exitosamente, visita tu perfil para más detalles", 3000)
+    if (!userId) {
+        errorToast("Debes iniciar sesión para crear un pedido", 3000)
+        return;
+    }
+    const resul = await actions.orderActions.createOrder({order, userId});
+    console.log(resul);
+    
+    if (resul.error) {
+        errorToast("error al crear pedido, intentalo más tarde :(", 3000)
+        return;
+    }
+    succesToast("Pedido creado exitosamente, visita tu perfil para más detalles ^^", 3000)
     addOrder(order);
 }
 
