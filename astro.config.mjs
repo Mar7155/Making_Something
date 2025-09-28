@@ -9,7 +9,6 @@ import { esES } from "@clerk/localizations";
 import tailwindcss from '@tailwindcss/vite';
 
 import cloudflare from "@astrojs/cloudflare";
-import node from "@astrojs/node"
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,13 +24,8 @@ export default defineConfig({
       CLERK_WEBHOOK_SIGNING_SECRET: envField.string({context: "server", access: 'public'}),
     }
   },
-  server: {
-    allowedHosts: ['.ngrok-free.app']
-  },
   output: 'server',
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: cloudflare(),
   integrations: [react(), clerk({
     localization: esES,
   })]
