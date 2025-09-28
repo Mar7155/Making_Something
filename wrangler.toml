@@ -1,7 +1,0 @@
-name = "making-something"
-compatibility_date = "2024-08-27"
-main = "./dist/worker/index.js"
-
-[vars]
-PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_cmVsYXhlZC1rYXR5ZGlkLTM1LmNsZXJrLmFjY291bnRzLmRldiQ
-CLERK_SECRET_KEY=sk_test_UxRlKyThh9CQOgKfrfL85UCA4ffzKoAqpC6DGUGrBc

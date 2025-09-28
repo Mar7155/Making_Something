@@ -1,13 +1,10 @@
 import { prisma } from '@/db/prisma'
-import { API_URL } from '@/lib/utils'
 import { verifyWebhook } from '@clerk/astro/webhooks'
 import type { APIRoute } from 'astro'
-import { CLERK_WEBHOOK_SIGNING_SECRET } from 'astro:env/server'
 
 export const POST: APIRoute = async ({ request }) => {
     try {
-        console.log('webhook secret: ', CLERK_WEBHOOK_SIGNING_SECRET);
-
+        const CLERK_WEBHOOK_SIGNING_SECRET = import.meta.env.CLERK_WEBHOOK_SIGNING_SECRET
         const evt = await verifyWebhook(request, {
             signingSecret: CLERK_WEBHOOK_SIGNING_SECRET,
         })
@@ -16,8 +13,6 @@ export const POST: APIRoute = async ({ request }) => {
         // For this guide, log payload to console
         const { id } = evt.data
         const eventType = evt.type
-        console.log(`Received webhook with ID ${id} and event type of ${eventType}`)
-        console.log('Webhook payload:', evt.data)
         const data = evt.data
         
 
@@ -26,8 +21,6 @@ export const POST: APIRoute = async ({ request }) => {
             const { username, email_addresses } = data as { username: string; email_addresses: Array<{ email_address: string }> };
 
             const email = Array.isArray(email_addresses) && email_addresses.length > 0 ? email_addresses[0].email_address : null;
-
-            console.log('user', username, ' email', email);
             
             if (!username || !email) {
                 return new Response(JSON.stringify({ error: 'username and email required' }), { status: 400 });
