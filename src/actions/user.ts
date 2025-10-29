@@ -32,6 +32,7 @@ export const userActions = {
     }),
     handler: async (input) => {
       try {
+        console.log(API_URL);
         
         const response = await fetch(API_URL + `user/userByUsername/${input.username}`, {
           method: 'GET',

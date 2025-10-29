@@ -27,6 +27,8 @@ export default function useUserInfo() {
                 return;
             }
             const result = await actions.userActions.getUser({ username });
+            console.log(result);
+            
 
             if (result.error) {
                 setError("Failed to fetch user data");
@@ -41,7 +43,8 @@ export default function useUserInfo() {
                 $loading.set(false);
                 return;
             }
-
+            console.log(userData);            
+            
             const user: User = {
                 id: userData.user.id,
                 clerk_id: clerkUser?.id,

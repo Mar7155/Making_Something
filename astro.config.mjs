@@ -24,6 +24,7 @@ export default defineConfig({
       CLERK_WEBHOOK_SIGNING_SECRET: envField.string({context: "server", access: 'public'}),
     }
   },
+  site: 'https://makingsomething.store/',
   output: 'server',
   adapter: cloudflare(),
   integrations: [react(), clerk({

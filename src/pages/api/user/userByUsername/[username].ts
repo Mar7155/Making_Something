@@ -7,10 +7,14 @@ export async function GET({ params }: { params: { username: string } }) {
       return new Response(JSON.stringify({ error: "username required" }), { status: 400 });
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findFirst({
       where: { username: username },
       include: { orders: true, shippingAddresses: true},
     });
+
+    if (!user) {
+      return new Response(JSON.stringify({ error: "User not found" }), { status: 404 });
+    }
 
     return new Response(JSON.stringify({ user }), { status: 200 });
   } catch (error) {
