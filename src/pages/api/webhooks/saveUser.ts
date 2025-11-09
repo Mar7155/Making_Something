@@ -1,4 +1,6 @@
-import { prisma } from '@/db/prisma'
+import { neon } from '@neondatabase/serverless';
+const sql = neon(import.meta.env.DATABASE_URL);
+
 import { verifyWebhook } from '@clerk/astro/webhooks'
 import type { APIRoute } from 'astro'
 
@@ -26,12 +28,8 @@ export const POST: APIRoute = async ({ request }) => {
                 return new Response(JSON.stringify({ error: 'username and email required' }), { status: 400 });
             }
 
-            const newUser = await prisma.user.create({
-                data: {
-                    username,
-                    email,
-                },
-            });
+            const newUser = await sql`INSERT INTO users (clerk_id, username, email) 
+                VALUES (${id}, ${username}, ${email}) RETURNING *;`;
 
             return new Response(JSON.stringify({ user_created: newUser }), { status: 201, headers: { "Content-Type": "application/json" } });
         } else {
