@@ -24,7 +24,7 @@
     "@nanostores/react": "^1.0.0",
     "@neondatabase/serverless": "^1.0.1",
     "@prisma/adapter-neon": "^6.16.2",
-    "@prisma/client": "^6.16.2",
+    "@prisma/client": "^6.19.0",
     "@prisma/extension-accelerate": "^2.0.2",
     "@radix-ui/react-checkbox": "^1.1.5",
     "@radix-ui/react-dialog": "^1.1.7",
@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@types/ws": "^8.18.1",
-    "prisma": "^6.16.2",
+    "prisma": "^6.19.0",
     "wrangler": "^4.33.0"
   }
 }
