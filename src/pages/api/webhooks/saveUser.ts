@@ -26,7 +26,7 @@ export const POST: APIRoute = async ({ request }) => {
                 return new Response(JSON.stringify({ error: 'username and email required' }), { status: 400 });
             }
 
-            const newUser = await sql`INSERT INTO users (clerk_id, username, email) 
+            const newUser = await sql`INSERT INTO User (clerk_id, username, email) 
                 VALUES (${id}, ${username}, ${email}) RETURNING *;`;
 
             return new Response(JSON.stringify({ user_created: newUser }), { status: 201, headers: { "Content-Type": "application/json" } });
