@@ -5,7 +5,7 @@ import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async () => {
   try {
-    const users = await sql`SELECT * FROM User ORDER BY created_at DESC;`; 
+    const users = await sql`SELECT * FROM "User" ORDER BY created_at DESC;`; 
     return new Response(JSON.stringify(users), {
       status: 200,
       headers: { "Content-Type": "application/json" },
