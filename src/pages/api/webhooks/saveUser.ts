@@ -11,8 +11,6 @@ export const POST: APIRoute = async ({ request }) => {
             signingSecret: CLERK_WEBHOOK_SIGNING_SECRET,
         })
 
-        // Do something with payload
-        // For this guide, log payload to console
         const { id } = evt.data
         const eventType = evt.type
         const data = evt.data
