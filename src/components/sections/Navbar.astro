@@ -1,5 +1,4 @@
 ---
-import { SignedIn } from '@clerk/astro/components';
 import Button from '../ui/buttons/PrimaryButton.astro';
 
 interface Props {
@@ -28,10 +27,8 @@ const { links } = Astro.props;
                 );
             })
         }
-        <SignedIn server:defer>
             <li>
                 <Button href="/Profile" text="Perfil" color="200,0,255,0.8" />
             </li>
-        </SignedIn>
     </ul>
 </nav>

@@ -1,0 +1,10 @@
+---
+import Layout from "@/layouts/LayoutLogin.astro";
+import RegisterForm from "@/components/forms/registration-form";
+---
+
+<Layout>
+    <section class="min-h-screen flex justify-center items-center p-4">
+        <RegisterForm client:idle/>
+    </section>
+</Layout>

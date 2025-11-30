@@ -1,14 +1,13 @@
-import { $userStore } from "@clerk/astro/client";
 import type { User, UserResponse } from "@/lib/types/user"
 import { useEffect, useState } from "react"
 import { actions } from "astro:actions";
 import { useStore } from "@nanostores/react";
 import { $loading, $user } from "@/lib/stores/userStore";
+import { supabase } from "@/db/supabaseClient";
 
 type EditType = "user" | "address"
 export default function useUserInfo() {
 
-    const clerkUser = useStore($userStore)
     const user = useStore($user)
     const loadingUser = useStore($loading)
     const [isEditingUser, setIsEditingUser] = useState(false)
@@ -22,13 +21,13 @@ export default function useUserInfo() {
         const fetchUserInfo = async () => {
             $loading.set(true)
             const username = clerkUser?.username;
-            
+
             if (!username) {
                 return;
             }
             const result = await actions.userActions.getUser({ username });
             console.log(result);
-            
+
 
             if (result.error) {
                 setError("Failed to fetch user data");
@@ -43,8 +42,8 @@ export default function useUserInfo() {
                 $loading.set(false);
                 return;
             }
-            console.log(userData);            
-            
+            console.log(userData);
+
             const user: User = {
                 id: userData.user.id,
                 clerk_id: clerkUser?.id,
@@ -58,7 +57,7 @@ export default function useUserInfo() {
             $user.set(user)
             setFormData(user)
             setOriginalData(user)
-            $loading.set(false)            
+            $loading.set(false)
         }
         fetchUserInfo()
     }, [])
@@ -67,7 +66,7 @@ export default function useUserInfo() {
 
         setFormData({ ...formData })
         setOriginalData({ ...formData })
-        $user.set({...formData})
+        $user.set({ ...formData })
 
         if (type === "user") {
             setIsEditingUser(false)
@@ -123,6 +122,23 @@ export default function useUserInfo() {
         setViewAddress(!viewAddress)
     }
 
+    const logout = async () => {
+        try {
+            const { error } = await supabase.auth.signOut();
+
+            if (error) {
+                throw error;
+            }
+
+            // Éxito: Redirigir al usuario al Home
+            window.location.href = "/";
+
+        } catch (error) {
+            console.error("Error al cerrar sesión:", error);
+            alert("No se pudo cerrar la sesión, intenta de nuevo.");
+        }
+    };
+
     return {
         formData,
         originalData,
@@ -132,6 +148,7 @@ export default function useUserInfo() {
         error,
         user,
         loadingUser,
+        logout,
         handleChange,
         saveChanges,
         startEditing,

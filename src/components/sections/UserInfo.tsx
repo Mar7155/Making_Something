@@ -7,12 +7,11 @@ import { Check, Loader2, LogOut, Pencil, X } from "lucide-react"
 import Avvvatars from 'avvvatars-react'
 import type { User } from "@/lib/types/user"
 import { Switch } from "../ui/switch"
-import { SignOutButton } from "@clerk/astro/react"
 import useUserInfo from "@/hooks/useUserInfo"
 
 export default function UserInfo() {
 
-  const { user, loadingUser } = useUserInfo()
+  const { user, loadingUser, logout } = useUserInfo()
 
   const renderField = (field: string, label: string, type = "text", isNumeric = false) => {
 
@@ -157,12 +156,10 @@ export default function UserInfo() {
         )*/}
       </CardContent >
       <CardFooter className="flex justify-end">
-        <SignOutButton>
-          <Button variant="destructive">
+        <Button variant="destructive" onClick={() => logout()}>
             <LogOut className="h-4 w-4" />
             Cerrar Sesión
-          </Button>
-        </SignOutButton>
+        </Button>
       </CardFooter>
     </Card >
   )

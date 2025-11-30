@@ -56,3 +56,53 @@ export const OrderSchema = z.object({
   payment_method: PaymentMethodSchema.optional(),
   tracking_number: z.string().optional(),
 });
+
+import { OrderStatus } from '@/lib/types';
+
+// --- SCHEMA DE PERSONALIZACIÓN (JSONB) ---
+// Validamos lo que guardamos en 'customization_data'
+export const customizationSchema = z.object({
+  file_path: z.string().min(1, "File path is required").optional(), 
+  instructions: z.string().max(500).optional(),
+  
+  // Campos específicos para impresión 3D/Pines
+  layer_height: z.string().optional(),
+  infill: z.string().optional(),
+  finish: z.enum(['matte', 'glossy', 'standard']).optional(),
+});
+
+// Schema para un Item
+export const orderItemSchema = z.object({
+  product_id: z.string().uuid(),
+  quantity: z.number().int().positive().min(1),
+  amount: z.number().positive(), // Precio unitario al momento de compra
+  discount: z.number().default(0),
+  
+  // Validamos que el JSON cumpla la estructura
+  customization_data: customizationSchema.optional(), 
+});
+
+// Schema para crear la Orden (Checkout)
+export const createOrderSchema = z.object({
+  profile_id: z.string().uuid(), // Reference to profile
+  amount: z.number().positive(), // Total de la orden
+  items: z.array(orderItemSchema).min(1, "Cart is empty"),
+});
+
+// --- TIPOS DE RESPUESTA (DB) ---
+export type OrderItem = z.infer<typeof orderItemSchema> & {
+  id: string;
+  order_id: string;
+};
+
+export type Order = {
+  id: string;
+  profile_id: string;
+  amount: number;
+  status: OrderStatus; // Usamos el Enum (1, 2, 3...)
+  created_at: string;
+  updated_at: string;
+  // Relaciones opcionales (Joins)
+  items?: OrderItem[]; 
+  shipment?: any; 
+};

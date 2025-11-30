@@ -3,7 +3,7 @@ import type { Cart } from '../types/cart';
 import type { Product } from '../types/product';
 import productsList from "@/content/products/products.json";
 import { succesToast, errorToast } from "@/components/ui/sonner";
-import type { Order } from '../types/order';
+import type { CreateOrder } from '../types/order';
 import type { ShippingAddress } from '../types/user';
 import { $user, addOrder } from './userStore';
 import { actions } from 'astro:actions';
@@ -117,20 +117,21 @@ export function createShippingAddress(shippingAddress: ShippingAddress) {
 export async function createOrder(userId: string) {
     const currentDate = new Date()
     
-    const order: Order = {
-        cart: $cart.get(),
-        total: $cart.get().total,
-        subtotal: $cart.get().sub_total,
-        discount: $cart.get().discount,
-        status: 'pending',
-        shipping_address: $shipping.get() || "",
-        created_at: currentDate.toLocaleDateString(),
-        updated_at: currentDate.toLocaleDateString(),
-    }
     if (!userId) {
         errorToast("Debes iniciar sesión para crear un pedido", 3000)
         return;
     }
+
+    const order: CreateOrder = {
+        id: $cart.get().id ?? crypto.randomUUID(),
+        cart: $cart.get(),
+        total: $cart.get().total ?? 0,
+        subtotal: $cart.get().sub_total ?? 0,
+        discount: $cart.get().discount ?? 0,
+        created_at: currentDate.toLocaleDateString(),
+        updated_at: currentDate.toLocaleDateString(),
+    }
+    
     const resul = await actions.orderActions.createOrder({order, userId});
     console.log(resul);
     

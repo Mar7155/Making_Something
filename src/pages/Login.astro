@@ -1,0 +1,10 @@
+---
+import Layout from "@/layouts/LayoutLogin.astro";
+import LoginForm from "@/components/forms/Login.tsx";
+---
+
+<Layout>
+    <section class="w-full min-h-full flex justify-center items-center">
+        <LoginForm client:idle/>
+    </section>
+</Layout>

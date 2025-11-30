@@ -4,22 +4,22 @@ import { Input } from '../ui/input'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/custom-card'
-import { shippingSchema, type ShippingFormValues } from '@/lib/schemas/shipping-schema'
+import { shippingAddressSchema, type ShippingFormValues } from '@/lib/schemas/shipping-schema'
 import { Button } from '../ui/button'
 
 function shippingForm() {
 
     const shippingForm = useForm<ShippingFormValues>({
-        resolver: zodResolver(shippingSchema),
+        resolver: zodResolver(shippingAddressSchema),
         defaultValues: {
-            full_name: '',
+            fullname: '',
             email: '',
-            phone: NaN,
+            phone: '',
             street: '',
-            num_ext: '',
-            num_int: NaN,
+            ext_num: '',
+            int_num: '',
             district: '',
-            zip_code: NaN,
+            zip_code: '',
             city: '',
             state: ''
         }
@@ -134,7 +134,7 @@ function shippingForm() {
                             <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                                 <FormField
                                     control={shippingForm.control}
-                                    name='full_name'
+                                    name='fullname'
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>
@@ -199,7 +199,7 @@ function shippingForm() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <FormField
                                         control={shippingForm.control}
-                                        name="num_ext"
+                                        name="ext_num"
                                         render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel>Número Exterior <span className="text-red-500">*</span></FormLabel>
@@ -216,7 +216,7 @@ function shippingForm() {
 
                                     <FormField
                                         control={shippingForm.control}
-                                        name="num_int"
+                                        name="int_num"
                                         render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel>

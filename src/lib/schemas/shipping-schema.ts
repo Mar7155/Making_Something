@@ -1,16 +1,39 @@
+// schemas/shipping.ts
 import { z } from 'zod';
 
-export const shippingSchema = z.object({
-    full_name: z.string({message: "Ingresa tu nombre completo"}).min(3, {message: "El nombre debe tener al menos 3 caracteres"}),
-    email: z.string({message: "El correo es requerído"}).email({message: "Ingresa un correo válido"}),
-    phone: z.number({message: "Tu numero es requerido"}),
-    street: z.string({message: 'La calle es requerida'}).min(3, {message: 'La calle debe tener al menos 3 caracteres'}),
-    num_ext: z.coerce.string({message: 'El número exterior es requerido'}).min(1, {message: 'El número exterior debe tener al menos 1 carácter'}),
-    num_int: z.coerce.number().optional(),
-    district: z.string({message: 'La colonia es requerida'}).min(3, {message: 'La colonia debe tener al menos 3 caracteres'}),
-    zip_code: z.coerce.number({message: 'El código postal es requerido'}).min(10000, {message: "ingresa un código postal válido"}),
-    city: z.string({message: 'La ciudad es requerida'}).min(3, {message: 'La ciudad debe tener al menos 3 caracteres'}),
-    state: z.string({message: 'El estado es requerido'}).min(3, {message: 'El estado debe tener al menos 3 caracteres'}),
-})
+// --- ZOD SCHEMA (Address Form) ---
+export const shippingAddressSchema = z.object({
+  profile_id: z.string().uuid(), // Ahora usamos profile_id
+  fullname: z.string().min(5, "Full name required"),
+  email: z.string().email("Invalid email"),
+  phone: z.string().min(10, "Phone must be 10 digits").regex(/^\d+$/, "Numbers only"),
+  company: z.string().optional(), // Antes 'empresa'
+  street: z.string().min(1, "Street required"),
+  ext_num: z.string().min(1, "Exterior number required"),
+  int_num: z.string().optional(),
+  district: z.string().min(1, "District required"),
+  city: z.string().min(1, "City required"),
+  state: z.string().min(1, "State required"),
+  zip_code: z.string().length(5, "Zip code must be 5 digits"),
+  country: z.string().default("Mexico"),
+  is_default: z.boolean().default(false),
+});
 
-export type ShippingFormValues = z.infer<typeof shippingSchema>
+// Tipo para frontend
+export type ShippingFormValues = z.infer<typeof shippingAddressSchema>
+
+export type ShippingAddress = z.infer<typeof shippingAddressSchema> & {
+  id: string;
+};
+
+export type Shipment = {
+  id: string;
+  order_id: string;
+  address_id: string;
+  tracking_number: string | null;
+  shipment_date: string | null;
+  delivery_date: string | null;
+  status: 'preparing' | 'shipped' | 'delivered' | 'returned';
+  // Join opcional
+  address?: ShippingAddress;
+};

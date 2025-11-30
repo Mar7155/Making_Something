@@ -7,7 +7,6 @@ import { actions } from "astro:actions";
 
 export const $user = atom<User>({
     id: "",
-    clerk_id: "",
     username: "kitty",
     email: "",
     has_address: false,

@@ -3,12 +3,11 @@ import { defineConfig, envField } from 'astro/config';
 
 import react from '@astrojs/react';
 
-import clerk from '@clerk/astro';
-import { esES } from "@clerk/localizations";
-
 import tailwindcss from '@tailwindcss/vite';
 
 import cloudflare from "@astrojs/cloudflare";
+
+import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,16 +17,14 @@ export default defineConfig({
 
   env:{
     schema:{
-      API_URL: envField.string({context: "server", access: "secret", optional: true}),
-      PUBLIC_CLERK_PUBLISHABLE_KEY: envField.string({context: "server", access: "secret", optional: true}),
-      CLERK_SECRET_KEY: envField.string({context: "server", access: "secret", optional: true}),
-      CLERK_WEBHOOK_SIGNING_SECRET: envField.string({context: "server", access: 'public'}),
+      API_URL: envField.string({context:'client', access: "public", optional: true}),
     }
   },
   site: 'https://makingsomething.store/',
   output: 'server',
-  adapter: cloudflare(),
-  integrations: [react(), clerk({
-    localization: esES,
-  })]
+  adapter: node({mode: 'standalone'}),
+  integrations: [
+    react(),
+    
+  ]
 });

@@ -1,6 +1,6 @@
 ---
 
-import LogginButtons from "../ui/buttons/LogginButtons.astro";
+import LogginButtons from "../ui/buttons/LogginButtons";
 import { PanelRightCloseIcon } from "@lucide/astro";
 import Navbar from "./Navbar.astro";
 
@@ -20,7 +20,7 @@ const homeLinks = [
 const pagesLinks = [
     { label: "Inicio", href: "/", color: "200,0,255,0.8" },
     { label: "Productos", href: "/Products", color: "0,165,255,0.8" },
-    { label: "Servicios", href: "/Blog", color: "40,200,0,0.8" },
+    { label: "Blog", href: "/Blog", color: "40,200,0,0.8" },
 ];
 ---
 
@@ -39,7 +39,7 @@ const pagesLinks = [
             </button>
         </div>
         <div class="flex justify-center items-center pt-10">
-            <LogginButtons server:defer/>
+            <LogginButtons client:load/>
         </div>
         {isHome ? (
             <Navbar links={homeLinks} />
