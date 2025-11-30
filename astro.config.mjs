@@ -9,6 +9,8 @@ import cloudflare from "@astrojs/cloudflare";
 
 import node from '@astrojs/node';
 
+const DEV = process.env.NODE_ENV === 'development';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -22,7 +24,7 @@ export default defineConfig({
   },
   site: 'https://makingsomething.store/',
   output: 'server',
-  adapter: node({mode: 'standalone'}),
+  adapter: DEV ? node({mode: 'standalone'}) : cloudflare(),
   integrations: [
     react(),
     
