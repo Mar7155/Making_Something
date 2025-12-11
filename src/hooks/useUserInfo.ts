@@ -20,41 +20,18 @@ export default function useUserInfo() {
     useEffect(() => {
         const fetchUserInfo = async () => {
             $loading.set(true)
-            const username = clerkUser?.username;
 
-            if (!username) {
-                return;
-            }
-            const result = await actions.userActions.getUser({ username });
-            console.log(result);
-
-
-            if (result.error) {
-                setError("Failed to fetch user data");
+            const { data: { user }, error } = await supabase.auth.getUser();
+            
+            if (error || !user) {
+                setError("Error al obtener la información del usuario");
                 $loading.set(false);
                 return;
             }
 
-            // result.data could be UserResponse or an error object
-            const userData = result.data as UserResponse;
-            if (!userData) {
-                setError("Invalid user data received");
-                $loading.set(false);
-                return;
-            }
-            console.log(userData);
+            console.log("usuario logeado", user);
 
-            const user: User = {
-                id: userData.user.id,
-                clerk_id: clerkUser?.id,
-                username: userData.user.username,
-                email: userData.user.email,
-                has_address: userData.user.has_address,
-                stripe_customer_id: "",
-                orders: userData.user.orders,
-                address: userData.user.shippingAddresses
-            }
-            $user.set(user)
+            $user.set(user.user_metadata)
             setFormData(user)
             setOriginalData(user)
             $loading.set(false)

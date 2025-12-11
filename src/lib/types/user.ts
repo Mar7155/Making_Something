@@ -1,5 +1,3 @@
-import type { Order } from "./order"
-
 export interface Address {
   street?: string
   no_ext?: string
@@ -11,25 +9,19 @@ export interface Address {
 }
 
 export interface User {
-  id?: string         // UUID local
-  clerk_id?: string   // ID de Clerk
+  id?: string
   username?: string;
   email?: string
   has_address?: boolean
-  stripe_customer_id?: string // ID de Stripe 
+  stripe_customer_id?: string
   address?: ShippingAddress[]
-  orders?: Order[]
 }
 
 export interface UserResponse {
-  user: {
-    id?: string,
-    username?: string,
-    email?: string,
-    has_address?: boolean,
-    shippingAddresses?: ShippingAddress[],
-    orders?: Order[]
-  }
+  id?: string,
+  username?: string,
+  email?: string,
+  fullnaeme?: string,
 }
 
 export interface ShippingAddress extends Address {
