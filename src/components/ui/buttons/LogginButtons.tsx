@@ -27,7 +27,6 @@ export default function AuthButton() {
     return () => subscription.unsubscribe();
   }, []);
 
-  // Mientras verifica, no mostramos nada para evitar el "parpadeo"
   if (loading) return <div className="w-12 h-12"></div>; 
 
   return (
@@ -42,8 +41,7 @@ export default function AuthButton() {
           />
         </a>
       ) : (
-        /* --- ESTADO: NO LOGUEADO (Muestra Botón) --- */
-        <a href="/login">
+        <a href="/Login">
           <Button className="px-6 py-2 bg-amber-400 text-black font-bold border text-lg border-black rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:cursor-pointer hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-[2px] transition-all">
             Iniciar sesión
           </Button>

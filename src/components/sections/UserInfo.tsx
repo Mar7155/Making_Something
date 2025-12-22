@@ -11,16 +11,23 @@ import useUserInfo from "@/hooks/useUserInfo"
 
 export default function UserInfo() {
 
-  const { user, loadingUser, logout } = useUserInfo()
+  const { 
+    user, 
+    loadingUser, 
+    error,
+    logout,
+  } = useUserInfo()
+  console.log(user);
+  
 
   const renderField = (field: string, label: string, type = "text", isNumeric = false) => {
 
     let value: any
-    if (field.startsWith("address.") && user.has_address) {
+    if (field.startsWith("address.") && user?.has_address ) {
       const type = field.split(".")[1] as keyof NonNullable<User["address"]>
       value = user.address?.[type]
     } else {
-      value = user[field as keyof User]
+      value = user ? user[field as keyof User] : undefined
     }
 
     if (field.startsWith("address.")) {
@@ -50,10 +57,18 @@ export default function UserInfo() {
     )
   }
 
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <p className="text-red-500">{error}</p>
+      </div>
+    )
+  }
+
   return (
     <Card className="max-w-3xl mx-auto">
       <CardHeader className="flex flex-row items-center justify-start gap-0 pb-2">
-        {loadingUser ? (
+        {loadingUser || user === null ? (
           <Loader2 className="animate-spin" />
         ) : (
           <div>
@@ -81,6 +96,7 @@ export default function UserInfo() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {renderField("username", "Username")}
               {renderField("email", "Email", "email")}
+              {renderField("fullname", "Nombre Completo")}
             </div>
           </div>
         )}

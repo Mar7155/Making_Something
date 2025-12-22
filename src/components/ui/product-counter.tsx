@@ -24,7 +24,7 @@ const counter = () => {
             <div className="flex justify-center items-center">
                 <Button
                     onClick={() => minusQuantity()}
-                    className="bg-white hover:bg-gray-200 hover:cursor-pointer"
+                    variant="functions"
                 >
                     <Minus color="black" />
                 </Button>
@@ -38,7 +38,7 @@ const counter = () => {
                 />
                 <Button
                     onClick={() => plusQuantity(1)}
-                    className="bg-white hover:bg-gray-200 hover:cursor-pointer"
+                    variant="functions"
                 >
                     <Plus color="black" />
                 </Button>
@@ -46,19 +46,19 @@ const counter = () => {
             <div className="flex justify-center items-center gap-2">
                 <Button
                     onClick={() => plusQuantity(10)}
-                    className="bg-white hover:bg-gray-200 hover:cursor-pointer text-black"
+                    variant="functions"
                 >
                     <Plus color="black" />10
                 </Button>
                 <Button
                 onClick={() => plusQuantity(30)}
-                    className="bg-white hover:bg-gray-200 hover:cursor-pointer text-black"
+                    variant="functions"
                 >
                     <Plus color="black" />30
                 </Button>
                 <Button
                     onClick={() => plusQuantity(50)}
-                    className="bg-white hover:bg-gray-200 hover:cursor-pointer text-black"
+                    variant="functions"
                 >
                     <Plus color="black" />50
                 </Button>

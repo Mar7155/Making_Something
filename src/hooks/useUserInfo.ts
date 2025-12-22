@@ -28,10 +28,11 @@ export default function useUserInfo() {
                 $loading.set(false);
                 return;
             }
-
-            console.log("usuario logeado", user);
-
-            $user.set(user.user_metadata)
+            
+            $user.set({
+                id: user.id,
+                ...user.user_metadata
+            })
             setFormData(user)
             setOriginalData(user)
             $loading.set(false)

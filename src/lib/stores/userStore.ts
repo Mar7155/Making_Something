@@ -1,16 +1,10 @@
 import { atom } from "nanostores";
 import type { User } from "../types/user";
 import type { Order } from "../types/order";
-import { actions } from "astro:actions";
 
 // ----- Atoms -----
 
-export const $user = atom<User>({
-    id: "",
-    username: "kitty",
-    email: "",
-    has_address: false,
-});
+export const $user = atom<User | null>(null);
 
 export const $loading = atom(true)
 

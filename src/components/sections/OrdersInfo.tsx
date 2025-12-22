@@ -215,9 +215,11 @@ function OrdersInfo() {
                     <p className="text-muted-foreground text-sm mb-6">
                         Parece que no has realizado ninguna compra de pines o impresiones 3D.
                     </p>
-                    <Button variant="primary">
-                        Ver Catálogo
-                    </Button>
+                    <a href="/Products">
+                        <Button variant="primary">
+                            Ver Catálogo
+                        </Button>
+                    </a>
                 </div>
             )}
         </>
